@@ -1,0 +1,227 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Fox - Service d'ingénierie Informatique</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Premium Bootstrap 4 Landing Page Template" />
+    <meta name="keywords" content="bootstrap 4, premium, marketing, multipurpose" />
+    <meta content="Shreethemes" name="author" />
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" />
+    <!-- Bootstrap -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+    <!-- Magnific -->
+    <link href="{% static 'css/magnific-popup.css' %}" rel="stylesheet" type="text/css" />
+    <!-- Icon -->
+    <link href="{% static 'css/materialdesignicons.min.css' %}" rel="stylesheet" type="text/css" />
+
+    <!-- SLICK SLIDER -->
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/owl.theme.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/owl.transitions.css' %}" />
+    <!-- Custom Css -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" id="theme-opt" />
+    <link href="{% static 'css/colors/default.css' %}" rel="stylesheet" id="color-opt" />
+    <link rel="stylesheet"
+        href="https://cdn-uicons.flaticon.com/2.5.1/uicons-solid-straight/css/uicons-solid-straight.css" />
+</head>
+
+<body>
+    <!-- Loader -->
+    <div id="preloader">
+        <div id="status">
+            <div class="logo">
+                <img src="{% static 'images/logo-loader.png' %}" height="150" class="d-block mx-auto" alt="" />
+            </div>
+            <div class="spinner">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Loader -->
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg fixed-top navbar-custom navbar-light sticky">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="{% static 'images/logo-fox-dark.png' %}" class="l-dark" height="40" alt="" />
+                <img src="{% static 'images/logo-fox-light.png' %}" class="l-light" height="40" alt="" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span data-feather="menu" class="fea icon-md"></span></button><!--end button-->
+
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#home">Acceuil</a>
+                    </li>
+                    <!--end nav item-->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <!--end nav item-->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#resume">Qui est Fox</a>
+                    </li>
+                    <!--end nav item-->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projets</a>
+                    </li>
+                    <!--end nav item-->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#news">Blog</a>
+                    </li>
+                    <!--end nav item-->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <!--end nav item-->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages
+                        </a>
+                        <div class="dropdown-menu rounded m-0" aria-labelledby="navbarDropdown">
+                            <div class="container mx-0 mx-md-0">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <a class="dropdown-item" href="page-blog.html">Blog</a>
+                                        <a class="dropdown-item" href="page-blog-detail.html">Blog Detail</a>
+                                        <a class="dropdown-item" href="page-portfolio.html">Portfolio</a>
+                                        <a class="dropdown-item" href="page-portfolio-detail.html">Portfolio Detail</a>
+                                    </div>
+                                    <!--end col-->
+                                </div>
+                                <!--end row-->
+                            </div>
+                            <!--end container-->
+                        </div>
+                    </li>
+                    <!--end nav item-->
+                </ul>
+
+                <ul class="list-unstyled mb-0 mt-2 mt-sm-0 social-icon light-social-icon">
+                    <li class="list-inline-item">
+                        <a href="javascript:void(0)"><i class="mdi mdi-facebook"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="javascript:void(0)"><i class="mdi mdi-github-circle"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="javascript:void(0)"><i class="mdi mdi-instagram"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--end container-->
+    </nav>
+    <!--end navbar-->
+    <!-- Navbar End -->
+
+
+
+
+
+
+
+{% block content %}
+
+
+  
+{% endblock %}
+
+
+
+    <!-- Footer Start -->
+    <footer class="footer bg-dark">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 text-center">
+                    <a href="#"><img src="{% static 'images/logo-fox-light.png' %}" height="50" alt="" /></a>
+                    <p class="para-desc mx-auto mt-5">
+                        Fox , life is easier : The genius at the disposal of all your
+                        dreams.
+                    </p>
+                    <ul class="list-unstyled mb-0 mt-4 social-icon">
+                        <li class="list-inline-item">
+                            <a href="javascript:void(0)"><i class="mdi mdi-facebook"></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="javascript:void(0)"><i class="mdi mdi-github-circle"></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="javascript:void(0)"><i class="mdi mdi-instagram"></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="javascript:void(0)"><i class="mdi mdi-vimeo"></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="javascript:void(0)"><i class="mdi mdi-google-plus"></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="javascript:void(0)"><i class="mdi mdi-linkedin"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+        </div>
+        <!--end container-->
+    </footer>
+    <!--end footer-->
+    <footer class="footer footer-bar bg-dark">
+        <div class="container text-foot text-center">
+            <p class="mb-0">
+                © 2024 Fox. Design with <i class="mdi mdi-heart text-danger"></i>.
+            </p>
+        </div>
+        <!--end container-->
+    </footer>
+    <!--end footer-->
+    <!-- Footer End -->
+
+    <!-- Back to top -->
+    <a href="#" class="back-to-top rounded text-center" id="back-to-top">
+        <i class="mdi mdi-chevron-up d-block"> </i>
+    </a>
+    <!-- Back to top -->
+
+    <!-- javascript -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/jquery.easing.min.js' %}"></script>
+    <script src="{% static 'js/scrollspy.min.js' %}"></script>
+    <!-- SLIDER -->
+    <script src="{% static 'js/owl.carousel.min.js ' %}"></script>
+    <!-- Magnific Popup -->
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/isotope.js"></script>
+    <script src="{% static 'js/portfolio-filter.js' %}"></script>
+    <script src="{% static 'js/magnific.init.js' %}"></script>
+    <!-- Contact -->
+    <script src="{% static 'js/contact.js' %}"></script>
+    <!-- Counter -->
+    <script src="{% static 'js/counter.init.js' %}"></script>
+    <!-- Tweenmax Js -->
+    <script src="{% static 'js/jquery-twennmax.js' %}"></script>
+    <script src="{% static 'js/TweenMax.min.js' %}"></script>
+    <script src="{% static 'js/jquery-twennmax.init.js' %}"></script>
+    <!-- Feather icon -->
+    <script src="{% static 'js/feather.min.js' %}"></script>
+    <!--Partical js-->
+    <script src="{% static 'js/particles.js' %}"></script>
+    <script src="{% static 'js/particles.app.js' %}"></script>
+    <!-- Typed -->
+    <script src="{% static 'js/typed.js' %}"></script>
+    <script src="{% static 'js/typed.init.js' %}"></script>
+    <!-- Main Js -->
+    <script src="{% static 'js/app.js' %}"></script>
+</body>
+
+</html>
