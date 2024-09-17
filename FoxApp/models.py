@@ -12,6 +12,12 @@ class Profile(models.Model):
     email=models.EmailField()
     telephone=models.CharField(max_length=328)
     cv=models.FileField(upload_to='FilesFox',blank=True,null=True)
+    fecebook=models.URLField(blank=True)
+    github=models.URLField(blank=True)
+    instagram=models.URLField(blank=True)
+    linkedIn=models.URLField(blank=True)
+    gmail=models.URLField(blank=True)
+    youtube=models.URLField(blank=True)
 
     def __str__(self):
         return f"MON PROFILE | {self.nom.capitalize()}" 
@@ -20,9 +26,9 @@ class Profile(models.Model):
 class Project(models.Model):
     nom=models.CharField(max_length=328)
     description=models.TextField()
-    photo1=models.ImageField(upload_to='PhotoFox',blank=True)
-    photo2=models.ImageField(upload_to='PhotoFox',blank=True)
-    photo3=models.ImageField(upload_to='PhotoFox',blank=True)
+    photo1_800_x_550=models.ImageField(upload_to='PhotoFox',blank=True)
+    photo2_800_x_550=models.ImageField(upload_to='PhotoFox',blank=True)
+    photo3_800_x_550=models.ImageField(upload_to='PhotoFox',blank=True)
     categorie=models.CharField(max_length=328)
     sujet=models.CharField(max_length=328,blank=True)
     date=models.DateField(blank=True)
@@ -52,7 +58,7 @@ class Post(models.Model):
     
 
 class Visiteur(models.Model):
-    email=models.EmailField()
+    email=models.EmailField(unique=True)
     nom=models.CharField(max_length=100,blank=True,null=True)
     def __str__(self):
         return f"VISITEUR | {self.email}"
@@ -66,6 +72,11 @@ class Commentaire(models.Model):
     def __str__(self):
         return f"COMMENTAIRE SUR | {self.post.titre} le {self.date}"
 
-    
+
+class Message(models.Model):
+    visiteur=models.ForeignKey(Visiteur,on_delete=models.CASCADE)
+    contenu=models.TextField()
+    objet=models.CharField(max_length=500,blank=True,null=True)
+
 
     

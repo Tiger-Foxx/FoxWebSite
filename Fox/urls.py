@@ -23,5 +23,13 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index, name='index')
+    path('', index, name='index'),
+    path('post/<str:id>',post,name='post'),
+    path('subscribe/',subscribe,name='subscribe'),
+    path('blog/',blog,name='blog'),
+    path('portfolio/',portfolio,name='portfolio'),
+    path('projet/<str:id>',projet,name='projet'),
+    path('success/<str:message>',success,name='success'),
+    path('comment/<str:id>',comment,name='comment'),
+    path('sendMessage/',sendMessage,name='sendMessage'),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
