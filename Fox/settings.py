@@ -132,8 +132,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'donfackarthur750@gmail.com'
-EMAIL_HOST_PASSWORD = 'woweaydkwkeusjsi'
+EMAIL_HOST_USER = 'tigerfox750@gmail.com'
+EMAIL_HOST_PASSWORD2 = 'woweaydkwkeusjsi'
+EMAIL_HOST_PASSWORD='rltrfyxinepnqazp'
 # GoFind/settings.py
 
 FCM_SERVER_KEY = 'AAAA8SocC98:APA91bHRGheiHJn0AQMizfX1-EpYMhVMALzYTqe6cyh8NVrNK69Ky_IcfrvT30WrImcPXbM_Z4-PmcaNLIjymca7yZuSGhui4ixSWIYnjijB8KnvIfH7dxFM-yMlcKRvlQJIFkc0MSdh'

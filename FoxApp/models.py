@@ -12,7 +12,7 @@ class Profile(models.Model):
     email=models.EmailField()
     telephone=models.CharField(max_length=328)
     cv=models.FileField(upload_to='FilesFox',blank=True,null=True)
-    fecebook=models.URLField(blank=True)
+    facebook=models.URLField(blank=True)
     github=models.URLField(blank=True)
     instagram=models.URLField(blank=True)
     linkedIn=models.URLField(blank=True)
@@ -77,6 +77,19 @@ class Message(models.Model):
     visiteur=models.ForeignKey(Visiteur,on_delete=models.CASCADE)
     contenu=models.TextField()
     objet=models.CharField(max_length=500,blank=True,null=True)
+    def __str__(self):
+        return f"MESSAGE DE  {self.visiteur} :  {self.contenu}"
+
+class Annonce(models.Model):
+    date = models.DateField(auto_now_add=True)
+    contenuP1 = models.TextField(blank=True, null=True)
+    contenuConclusion = models.TextField(blank=True, null=True)
+    contenuSitation = models.TextField(blank=True, null=True)
+    def __str__(self):
+        return f"ANNONCE DU | {self.date} :  {self.contenuP1}"
+
+
+
 
 
     

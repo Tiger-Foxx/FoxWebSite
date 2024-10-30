@@ -2385,3 +2385,15 @@ p {
   border-top: 1px solid #4e555d;
 }
 /*# sourceMappingURL=style.css.map */
+
+.alert-success{
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  text-align: center;
+  background-color: green;
+  color: white;
+  height: 200px;
+}

@@ -28,158 +28,82 @@
         <section class="section">
             <div class="container">
                 <div class="row">
+
+                    <!-- le blog meme  -->
                     <div class="col-lg-8 col-md-6">
                         <div class="row">
+
+                            {% for post in posts_page %}
                             <div class="col-lg-6 col-12 mb-4 pb-2">
                                 <div class="blog-post rounded shadow">
-                                    <img src="images/blog/01.jpg" class="img-fluid rounded-top" alt="">
+                                    {% if post.photo500_x_800 %}
+                                    <img src="{{post.photo500_x_800.url}}" class="img-fluid rounded-top" alt="">
+                                    {% endif %}
+                                   
                                     <div class="content pt-4 pb-4 p-3">
                                         <ul class="list-unstyled d-flex justify-content-between post-meta">
-                                            <li><i data-feather="user" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">Cristino</a></li> 
-                                            <li><i data-feather="tag" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">Branding</a></li>                                    
+                                            <li><i data-feather="user" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">{{ post.auteur }}</a></li> 
+                                            <li><i data-feather="tag" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">{{ post.categorie }}</a></li>                                    
                                         </ul> 
-                                        <h5 class="mb-3"><a href="page-blog-detail.html" class="title text-dark">Our Home Entertainment has Evolved Significantly</a> </h5>
+                                        <h5 class="mb-3"><a href="{% url 'post' post.id %}" class="title text-dark">{{ post.titre | slice:"0:50" }} ...</a> </h5>
                                         <ul class="list-unstyled mb-0 pt-3 border-top d-flex justify-content-between">
-                                            <li><a href="javascript:void(0)" class="text-dark">Read More <i data-feather="chevron-right" class="fea icon-sm"></i></a></li>
-                                            <li><i class="mdi mdi-calendar-edit mr-1"></i>10th April, 2020</li>
+                                            <li><a href="{% url 'post' post.id %}" class="text-dark">Voir plus <i data-feather="chevron-right" class="fea icon-sm"></i></a></li>
+                                            <li><i class="mdi mdi-calendar-edit mr-1"></i>{{post.date}}</li>
                                         </ul>
                                     </div><!--end content-->
                                 </div><!--end blog post-->
                             </div><!--end col-->
+                            {% endfor %}
+
+                           
         
-                            <div class="col-lg-6 col-12 mb-4 pb-2">
-                                <div class="blog-post rounded shadow">
-                                    <img src="images/blog/02.jpg" class="img-fluid rounded-top" alt="">
-                                    <div class="content pt-4 pb-4 p-3">
-                                        <ul class="list-unstyled d-flex justify-content-between post-meta">
-                                            <li><i data-feather="user" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">Cristino</a></li> 
-                                            <li><i data-feather="tag" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">Branding</a></li>                                    
-                                        </ul> 
-                                        <h5 class="mb-3"><a href="page-blog-detail.html" class="title text-dark">These Are The Voyages of The Starship Enterprise</a></h5>
-                                        <ul class="list-unstyled mb-0 pt-3 border-top d-flex justify-content-between">
-                                            <li><a href="javascript:void(0)" class="text-dark">Read More <i data-feather="chevron-right" class="fea icon-sm"></i></a></li>
-                                            <li><i class="mdi mdi-calendar-edit mr-1"></i>10th April, 2020</li>
-                                        </ul>
-                                    </div><!--end content-->
-                                </div><!--end blog post-->
-                            </div><!--end col-->
-        
-                            <div class="col-lg-6 col-12 mb-4 pb-2">
-                                <div class="blog-post rounded shadow">
-                                    <img src="images/blog/03.jpg" class="img-fluid rounded-top" alt="">
-                                    <div class="content pt-4 pb-4 p-3">
-                                        <ul class="list-unstyled d-flex justify-content-between post-meta">
-                                            <li><i data-feather="user" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">Cristino</a></li> 
-                                            <li><i data-feather="tag" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">Branding</a></li>                                    
-                                        </ul> 
-                                        <h5 class="mb-3"><a href="page-blog-detail.html" class="title text-dark">Three Reasons Visibility Matters in Supply Chain</a></h5>
-                                        <ul class="list-unstyled mb-0 pt-3 border-top d-flex justify-content-between">
-                                            <li><a href="javascript:void(0)" class="text-dark">Read More <i data-feather="chevron-right" class="fea icon-sm"></i></a></li>
-                                            <li><i class="mdi mdi-calendar-edit mr-1"></i>10th April, 2020</li>
-                                        </ul>
-                                    </div><!--end content-->
-                                </div><!--end blog post-->
-                            </div><!--end col-->
-        
-                            <div class="col-lg-6 col-12 mb-4 pb-2">
-                                <div class="blog-post rounded shadow">
-                                    <img src="images/blog/04.jpg" class="img-fluid rounded-top" alt="">
-                                    <div class="content pt-4 pb-4 p-3">
-                                        <ul class="list-unstyled d-flex justify-content-between post-meta">
-                                            <li><i data-feather="user" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">Cristino</a></li> 
-                                            <li><i data-feather="tag" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">Branding</a></li>                                    
-                                        </ul> 
-                                        <h5 class="mb-3"><a href="page-blog-detail.html" class="title text-dark">Our Home Entertainment has Evolved Significantly</a> </h5>
-                                        <ul class="list-unstyled mb-0 pt-3 border-top d-flex justify-content-between">
-                                            <li><a href="javascript:void(0)" class="text-dark">Read More <i data-feather="chevron-right" class="fea icon-sm"></i></a></li>
-                                            <li><i class="mdi mdi-calendar-edit mr-1"></i>10th April, 2020</li>
-                                        </ul>
-                                    </div><!--end content-->
-                                </div><!--end blog post-->
-                            </div><!--end col-->
-        
-                            <div class="col-lg-6 col-12 mb-4 pb-2">
-                                <div class="blog-post rounded shadow">
-                                    <img src="images/blog/05.jpg" class="img-fluid rounded-top" alt="">
-                                    <div class="content pt-4 pb-4 p-3">
-                                        <ul class="list-unstyled d-flex justify-content-between post-meta">
-                                            <li><i data-feather="user" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">Cristino</a></li> 
-                                            <li><i data-feather="tag" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">Branding</a></li>                                    
-                                        </ul> 
-                                        <h5 class="mb-3"><a href="page-blog-detail.html" class="title text-dark">These Are The Voyages of The Starship Enterprise</a></h5>
-                                        <ul class="list-unstyled mb-0 pt-3 border-top d-flex justify-content-between">
-                                            <li><a href="javascript:void(0)" class="text-dark">Read More <i data-feather="chevron-right" class="fea icon-sm"></i></a></li>
-                                            <li><i class="mdi mdi-calendar-edit mr-1"></i>10th April, 2020</li>
-                                        </ul>
-                                    </div><!--end content-->
-                                </div><!--end blog post-->
-                            </div><!--end col-->
-        
-                            <div class="col-lg-6 col-12 mb-4 pb-2">
-                                <div class="blog-post rounded shadow">
-                                    <img src="images/blog/06.jpg" class="img-fluid rounded-top" alt="">
-                                    <div class="content pt-4 pb-4 p-3">
-                                        <ul class="list-unstyled d-flex justify-content-between post-meta">
-                                            <li><i data-feather="user" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">Cristino</a></li> 
-                                            <li><i data-feather="tag" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">Branding</a></li>                                    
-                                        </ul> 
-                                        <h5 class="mb-3"><a href="page-blog-detail.html" class="title text-dark">Three Reasons Visibility Matters in Supply Chain</a></h5>
-                                        <ul class="list-unstyled mb-0 pt-3 border-top d-flex justify-content-between">
-                                            <li><a href="javascript:void(0)" class="text-dark">Read More <i data-feather="chevron-right" class="fea icon-sm"></i></a></li>
-                                            <li><i class="mdi mdi-calendar-edit mr-1"></i>10th April, 2020</li>
-                                        </ul>
-                                    </div><!--end content-->
-                                </div><!--end blog post-->
-                            </div><!--end col-->
-        
-                            <div class="col-lg-6 col-12 mb-4 pb-2">
-                                <div class="blog-post rounded shadow">
-                                    <img src="images/blog/07.jpg" class="img-fluid rounded-top" alt="">
-                                    <div class="content pt-4 pb-4 p-3">
-                                        <ul class="list-unstyled d-flex justify-content-between post-meta">
-                                            <li><i data-feather="user" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">Cristino</a></li> 
-                                            <li><i data-feather="tag" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">Branding</a></li>                                    
-                                        </ul> 
-                                        <h5 class="mb-3"><a href="page-blog-detail.html" class="title text-dark">Our Home Entertainment has Evolved Significantly</a> </h5>
-                                        <ul class="list-unstyled mb-0 pt-3 border-top d-flex justify-content-between">
-                                            <li><a href="javascript:void(0)" class="text-dark">Read More <i data-feather="chevron-right" class="fea icon-sm"></i></a></li>
-                                            <li><i class="mdi mdi-calendar-edit mr-1"></i>10th April, 2020</li>
-                                        </ul>
-                                    </div><!--end content-->
-                                </div><!--end blog post-->
-                            </div><!--end col-->
-        
-                            <div class="col-lg-6 col-12 mb-4 pb-2">
-                                <div class="blog-post rounded shadow">
-                                    <img src="images/blog/08.jpg" class="img-fluid rounded-top" alt="">
-                                    <div class="content pt-4 pb-4 p-3">
-                                        <ul class="list-unstyled d-flex justify-content-between post-meta">
-                                            <li><i data-feather="user" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">Cristino</a></li> 
-                                            <li><i data-feather="tag" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">Branding</a></li>                                    
-                                        </ul> 
-                                        <h5 class="mb-3"><a href="page-blog-detail.html" class="title text-dark">These Are The Voyages of The Starship Enterprise</a></h5>
-                                        <ul class="list-unstyled mb-0 pt-3 border-top d-flex justify-content-between">
-                                            <li><a href="javascript:void(0)" class="text-dark">Read More <i data-feather="chevron-right" class="fea icon-sm"></i></a></li>
-                                            <li><i class="mdi mdi-calendar-edit mr-1"></i>10th April, 2020</li>
-                                        </ul>
-                                    </div><!--end content-->
-                                </div><!--end blog post-->
-                            </div><!--end col-->
+                           
 
                             <!-- PAGINATION START -->
                             <div class="col-12">                                
                                 <ul class="pagination justify-content-center mb-0 list-unstyled">
-                                    <li><a href="#" class="pr-3 pl-3 pt-2 pb-2"> Previous</a></li>
-                                    <li class="active"><a href="#" class="pr-3 pl-3 pt-2 pb-2">1</a></li>
-                                    <li><a href="#" class="pr-3 pl-3 pt-2 pb-2">2</a></li>
-                                    <li><a href="#" class="pr-3 pl-3 pt-2 pb-2">3</a></li>
-                                    <li><a href="#" class="pr-3 pl-3 pt-2 pb-2">Next </a></li>
-                                </ul><!--end pagination-->
+                                    
+                                   
+                        
+                                <li class="{% if 1 == posts_page.number %}active{% endif %}"><a href="?page=1" class="pr-3 pl-3 pt-2 pb-2">1</a></li>
+
+                                <ul class="pagination justify-content-center mb-0 list-unstyled">
+                                    <!-- Lien vers la page précédente -->
+                                    {% if posts_page.has_previous %}
+                                        <li>
+                                            <a href="?page={{ posts_page.previous_page_number }}" class="pr-3 pl-3 pt-2 pb-2">Précédente</a>
+                                        </li>
+                                    {% endif %}
+                                
+                                    <!-- Afficher les numéros de page -->
+                                    {% for num in posts_page.paginator.page_range %}
+                                    {% if  num == 1 %}
+                                        <div></div>
+                                    {% else %}
+                                    <li class="{% if num == posts_page.number %}active{% endif %}">
+                                        <a href="?page={{ num }}" class="pr-3 pl-3 pt-2 pb-2">{{ num }}</a>
+                                    </li>
+                                    {% endif %}
+                                        
+                                    {% endfor %}
+                                
+                                    <!-- Lien vers la page suivante -->
+                                    {% if posts_page.has_next %}
+                                        <li>
+                                            <a href="?page={{ posts_page.next_page_number }}" class="pr-3 pl-3 pt-2 pb-2">Suivante</a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                                
                             </div><!--end col-->
                             <!-- PAGINATION END -->
                         </div><!--end row-->
                     </div><!--end col-->
+                    <!-- le blog meme  -->
 
+
+
+                    <!-- la side bar -->
                     <!-- START SIDEBAR -->
                     <div class="col-lg-4 col-md-6 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
                         <div class="sidebar sticky-sidebar">
@@ -188,16 +112,16 @@
                                 <div class="p-4 rounded shadow">
                                     <h6 class="widget-title font-weight-bold pt-2 pb-2 bg-light rounded text-center">Auteur</h6>
                                     <div class="text-center author mt-4">
-                                        <img src="images/home/hero.jpg" class="avatar avatar-md shadow border mx-auto rounded-circle" alt="">
+                                        <img src="{% static 'images/home/hero.jpg' %}" class="avatar avatar-md shadow border mx-auto rounded-circle" alt="">
                                         <div class="mt-4">
                                             <h6>Fox</h6>
                                             <small>Ingenierie Informatique</small>
                                             <ul class="list-unstyled social-icon social mt-4 mb-0">
-                                                <li class="list-inline-item"><a href="jvascript:void(0)" class="rounded"><i class="mdi mdi-facebook"></i></a></li>
-                                                <li class="list-inline-item"><a href="jvascript:void(0)" class="rounded"><i class="mdi mdi-instagram"></i></a></li>
-                                                <li class="list-inline-item"><a href="jvascript:void(0)" class="rounded"><i class="mdi mdi-github-circle"></i></a></li>
-                                                <li class="list-inline-item"><a href="jvascript:void(0)" class="rounded"><i class="mdi mdi-vimeo"></i></a></li>
-                                                <li class="list-inline-item"><a href="jvascript:void(0)" class="rounded"><i class="mdi mdi-dribbble"></i></a></li>
+                                                <li class="list-inline-item"><a href="{{profile.facebook}}" class="rounded"><i class="mdi mdi-facebook"></i></a></li>
+                                                <li class="list-inline-item"><a href="{{profile.instagram}}" class="rounded"><i class="mdi mdi-instagram"></i></a></li>
+                                                <li class="list-inline-item"><a href="{{profile.github}}" class="rounded"><i class="mdi mdi-github-circle"></i></a></li>
+                                                <li class="list-inline-item"><a href="{{profile.linkedin}}" class="rounded"><i class="mdi mdi-linkedin"></i></a></li>
+                                                <li class="list-inline-item"><a href="{{profile.gmail}}" class="rounded"><i class="mdi mdi-gmail"></i></a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -241,18 +165,19 @@
                                 <div class="p-4 rounded shadow">
                                     <h6 class="widget-title font-weight-bold pt-2 pb-2 bg-light rounded text-center">Posts Recents</h6>
                                     <div class="mt-4">
+                                        {% for post  in recents  %}
+                                        
                                         <div class="clearfix d-flex align-items-center post-recent">
-                                            <div class="post-recent-thumb"> <a href="jvascript:void(0)"> <img alt="img" src="images/blog/07.jpg" class="img-fluid rounded"></a></div>
-                                            <div class="post-recent-content"><a href="jvascript:void(0)">Consultant Business</a><span class="text-muted">15th April, 2020</span></div>
+                                      
+                                            <div class="post-recent-thumb"> <a href="jvascript:void(0)">
+                                                {% if post.photo500_x_800 %}
+                                                <img alt="{{post.titre}}" src="{{post.photo500_x_800.url}}" class="img-fluid rounded">
+                                                {% endif %}
+                                            </a>
                                         </div>
-                                        <div class="clearfix d-flex align-items-center post-recent">
-                                            <div class="post-recent-thumb"> <a href="jvascript:void(0)"> <img alt="img" src="images/blog/08.jpg" class="img-fluid rounded"></a></div>
-                                            <div class="post-recent-content"><a href="jvascript:void(0)">Look On The Glorious Balance</a> <span class="text-muted">15th April, 2020</span></div>
+                                            <div class="post-recent-content"><a href="jvascript:void(0)">{{ post.titre | slice:"0:25" }}...</a><span class="text-muted">{{post.date}}</span></div>
                                         </div>
-                                        <div class="clearfix d-flex align-items-center post-recent">
-                                            <div class="post-recent-thumb"> <a href="jvascript:void(0)"> <img alt="img" src="images/blog/01.jpg" class="img-fluid rounded"></a></div>
-                                            <div class="post-recent-content"><a href="jvascript:void(0)">Research Financial.</a> <span class="text-muted">15th April, 2020</span></div>
-                                        </div>
+                                        {% endfor %}
                                     </div>
                                 </div>
                             </div>

@@ -1612,7 +1612,7 @@
                     <div class="">
                         <div class="titles">
                             <h4 class="title title-line text-uppercase mb-1 pb-4" style="text-align: center">
-                                Votre addresse mail pour recevoir les <span style="color: #25b865;"> News</span> .
+                                Votre addresse mail pour recevoir les <span style="color: #25b865;"> News</span>
                             </h4>
                             <span></span>
                             
@@ -1623,16 +1623,21 @@
                     <div class="custom-form justify-content-center">
                         
                         <div class="row justify-content-center" style="margin-bottom: 10px;"><img src="{% static 'images/favicon.png' %}" alt="" height="65"></div>
-                        <form method="post" action="php/contact.php" name="contact-form" id="contact-form">
+                        <form method="post" action="{% url 'subscribe' %}" name="contact-form" id="form-sub">
+                            {% csrf_token %}
                             <div class="row justify-content-center">
                                 
                                 <div class="col-lg-6">
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <div class="form-group">
-                                                <input name="email" id="emailNews" type="text"
+                                            <form method="post"  >
+                                               <div class="form-group">
+                                                   <input name="email" id="emailNews" type="text"
                                                     class="form-control border rounded" placeholder="Monemail@gmail.com" />
+                                                   <button type="submit" onclick="document.getElementById('form-sub').submit()" hidden="true" id="btnSubscribe"></button>
                                             </div>
+                                            </form>
+
                                         </div>
                                         <!--end col-->
                                     </div>
@@ -1643,7 +1648,7 @@
                             <!--end row-->
                             <div class="row justify-content-center">
                                 <div class="row justify-content-center">
-                                    <input type="submit" id="submit" name="send" class="submitBnt btn btn-primary"
+                                    <input onclick="document.getElementById('btnSubscribe').click()" id="submit" name="send" class="submitBnt btn btn-primary"
                                         value="Envoyer" />
                                     <div id="simple-msg"></div>
                                 </div>
@@ -1747,13 +1752,14 @@
                 <div class="col-lg-12">
                     <div class="custom-form mb-sm-30">
                         <div id="message"></div>
-                        <form method="post" action="php/contact.php" name="contact-form" id="contact-form">
+                        <form method="post" action="{% url 'sendMessage' %}" name="contact-form" id="contact-form1">
+                            {% csrf_token %}
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="row">
                                         <div class="col-lg-12 col-md-6">
                                             <div class="form-group">
-                                                <input name="name" id="name" type="text"
+                                                <input name="nom" id="name" type="text"
                                                     class="form-control border rounded" placeholder="First Name :" />
                                             </div>
                                         </div>
@@ -1767,7 +1773,7 @@
                                         <!--end col-->
                                         <div class="col-lg-12">
                                             <div class="form-group">
-                                                <input name="subject" id="subject" class="form-control border rounded"
+                                                <input name="objet" id="subject" class="form-control border rounded"
                                                     placeholder="Your subject :" />
                                             </div>
                                         </div>
@@ -1779,7 +1785,7 @@
 
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <textarea name="comments" id="comments" rows="4"
+                                        <textarea name="contenu" id="comments" rows="4"
                                             class="form-control border rounded" placeholder="Your Message :"></textarea>
                                     </div>
                                 </div>

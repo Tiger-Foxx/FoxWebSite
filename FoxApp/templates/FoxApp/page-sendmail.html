@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Créer et envoyer une annonce</h2>
+<form method="post" action="{% url 'sendmail' %}">
+    {% csrf_token %}
+    <label for="contenuP1">TITRE-Introduction de l'annonce :</label>
+    <textarea id="contenuP1" name="contenuP1" rows="4" cols="50"></textarea>
+
+    <label for="contenuConclusion">Conclusion :</label>
+    <textarea id="contenuConclusion" name="contenuConclusion" rows="4" cols="50"></textarea>
+
+    <label for="contenuSitation"> <b> Citation ou autre contenu au centre :</b></label>
+    <textarea id="contenuSitation" name="contenuSitation" rows="4" cols="50"></textarea>
+     <label for="contenuImage"> <b>une image ? URL</b></label>
+    <input id="contenuImage" name="contenuImage" >
+
+
+    <button type="submit">Créer et envoyer l'annonce</button>
+
+</form>
+{% endblock %}

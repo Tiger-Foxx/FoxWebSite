@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +7,8 @@
     <title>Fox - Service d'ingénierie Informatique</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Fox Service de  Developpement et ingenieurie logicielle " />
-    <meta name="keywords" content="Developpement, web, mobile, Desktop, python , django, flutter,service,developpement" />
+    <meta name="keywords"
+        content="Developpement, web, mobile, Desktop, python , django, flutter,service,developpement" />
     <meta content="Shreethemes" name="Fox" />
     <!-- favicon -->
     <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" />
@@ -45,22 +45,26 @@
         </div>
     </div>
     <!-- Loader -->
+    <a href="{% url 'blog' %}" hidden="true" id="blog"></a>
+    <a href="{% url 'portfolio' %}" hidden="true" id="portfolio"></a>
+    <a href="{% url 'index' %}" hidden="true" id="index"></a>
 
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg fixed-top navbar-custom navbar-light sticky">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{% url 'index' %}">
                 <img src="{% static 'images/logo-fox-dark.png' %}" class="l-dark" height="40" alt="" />
                 <img src="{% static 'images/logo-fox-light.png' %}" class="l-light" height="40" alt="" />
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span data-feather="menu" class="fea icon-md"></span></button><!--end button-->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span data-feather="menu" class="fea icon-md"></span>
+            </button><!--end button-->
+
 
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#home">Acceuil</a>
+                        <a class="nav-link" href="#home" onclick="document.getElementById('index').click()">Acceuil</a>
                     </li>
                     <!--end nav item-->
                     <li class="nav-item">
@@ -71,17 +75,21 @@
                         <a class="nav-link" href="#resume">Qui est Fox</a>
                     </li>
                     <!--end nav item-->
-                    <li class="nav-item">
-                        <a class="nav-link" href="#projects">Projets</a>
+                    <li class="nav-item" >
+                        <a class="nav-link" href="#projects" onclick="document.getElementById('portfolio').click()">Projets</a>
                     </li>
                     <!--end nav item-->
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'blog' %}">Blog</a>
+                    <li class="nav-item" onclick="document.getElementById('blog').click()">
+                        
+                        <a class="nav-link" href="#blog" >Blog</a>
                     </li>
+                    
                     <!--end nav item-->
                     <li class="nav-item">
                         <a class="nav-link" href="#contact">Contact</a>
                     </li>
+                  
+                    
                     <!--end nav item-->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdown" role="button"
@@ -91,10 +99,10 @@
                             <div class="container mx-0 mx-md-0">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <a class="dropdown-item" href="page-blog.html">Blog</a>
-                                        <a class="dropdown-item" href="page-blog-detail.html">Blog Detail</a>
-                                        <a class="dropdown-item" href="page-portfolio.html">Portfolio</a>
-                                        <a class="dropdown-item" href="page-portfolio-detail.html">Portfolio Detail</a>
+                                        <a class="dropdown-item" href="">Blog</a>
+                                        <a class="dropdown-item" href="">Blog Detail</a>
+                                        <a class="dropdown-item" href="">Portfolio</a>
+                                        <a class="dropdown-item" href="">Portfolio Detail</a>
                                     </div>
                                     <!--end col-->
                                 </div>
@@ -108,13 +116,19 @@
 
                 <ul class="list-unstyled mb-0 mt-2 mt-sm-0 social-icon light-social-icon">
                     <li class="list-inline-item">
-                        <a href="javascript:void(0)"><i class="mdi mdi-facebook"></i></a>
+                        <a href="{{profile.facebook}}" class="rounded"><i class="mdi mdi-facebook"></i></a>
                     </li>
                     <li class="list-inline-item">
-                        <a href="javascript:void(0)"><i class="mdi mdi-github-circle"></i></a>
+                        <a href="{{profile.instagram}}" class="rounded"><i class="mdi mdi-instagram"></i></a>
                     </li>
                     <li class="list-inline-item">
-                        <a href="javascript:void(0)"><i class="mdi mdi-instagram"></i></a>
+                        <a href="{{profile.github}}" class="rounded"><i class="mdi mdi-github-circle"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="{{profile.linkedin}}" class="rounded"><i class="mdi mdi-linkedin"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="{{profile.gmail}}" class="rounded"><i class="mdi mdi-gmail"></i></a>
                     </li>
                 </ul>
             </div>
@@ -124,19 +138,7 @@
     <!--end navbar-->
     <!-- Navbar End -->
 
-
-
-
-
-
-
-{% block content %}
-
-
-  
-{% endblock %}
-
-
+    {% block content %} {% endblock %}
 
     <!-- Footer Start -->
     <footer class="footer bg-dark">
@@ -150,22 +152,19 @@
                     </p>
                     <ul class="list-unstyled mb-0 mt-4 social-icon">
                         <li class="list-inline-item">
-                            <a href="javascript:void(0)"><i class="mdi mdi-facebook"></i></a>
+                            <a href="{{profile.facebook}}" class="rounded"><i class="mdi mdi-facebook"></i></a>
                         </li>
                         <li class="list-inline-item">
-                            <a href="javascript:void(0)"><i class="mdi mdi-github-circle"></i></a>
+                            <a href="{{profile.instagram}}" class="rounded"><i class="mdi mdi-instagram"></i></a>
                         </li>
                         <li class="list-inline-item">
-                            <a href="javascript:void(0)"><i class="mdi mdi-instagram"></i></a>
+                            <a href="{{profile.github}}" class="rounded"><i class="mdi mdi-github-circle"></i></a>
                         </li>
                         <li class="list-inline-item">
-                            <a href="javascript:void(0)"><i class="mdi mdi-vimeo"></i></a>
+                            <a href="{{profile.linkedin}}" class="rounded"><i class="mdi mdi-linkedin"></i></a>
                         </li>
                         <li class="list-inline-item">
-                            <a href="javascript:void(0)"><i class="mdi mdi-google-plus"></i></a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="javascript:void(0)"><i class="mdi mdi-linkedin"></i></a>
+                            <a href="{{profile.gmail}}" class="rounded"><i class="mdi mdi-gmail"></i></a>
                         </li>
                     </ul>
                 </div>
@@ -192,6 +191,8 @@
         <i class="mdi mdi-chevron-up d-block"> </i>
     </a>
     <!-- Back to top -->
+
+    {% if index %}
 
     <!-- javascript -->
     <script src="{% static 'js/jquery.min.js' %}"></script>
@@ -223,6 +224,28 @@
     <script src="{% static 'js/typed.init.js' %}"></script>
     <!-- Main Js -->
     <script src="{% static 'js/app.js' %}"></script>
+
+    {% else %}
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+    <script src="{% static 'js/jquery.easing.min.js' %}"></script>
+
+    <script src="{% static 'js/scrollspy.min.js' %}"></script>
+
+    <script src="{% static 'js/owl.carousel.min.js ' %}"></script>
+
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+
+    <script src="{% static 'js/feather.min.js' %}"></script>
+
+    <script src="{% static 'js/app.js' %}"></script>
+
+
+
+    {% endif %}
 </body>
 
 </html>
