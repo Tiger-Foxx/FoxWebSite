@@ -31,7 +31,7 @@ urlpatterns = [
     path('projet/<str:id>',projet,name='projet'),
     path('success/<str:message>',success,name='success'),
     path('comment/<str:id>',comment,name='comment'),
-    path('sendmail/', sendmail, name='sendmail'),
+    path('sendNews/', send_newsletter, name='sendNews'),
     path('sendMessage/', sendMessage, name='sendMessage'),
 
               ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

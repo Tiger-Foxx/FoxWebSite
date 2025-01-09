@@ -1,0 +1,88 @@
+{# templates/FoxApp/email/newsletter_template.html #}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="margin: 0; padding: 20px; background-color: #1a1a1a; font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%;">
+    <table role="presentation" cellpadding="0" cellspacing="0" style="width: 100%; max-width: 600px; margin: 0 auto;">
+        <tr>
+            <td style="background-color: #ffffff; border-radius: 15px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); padding: 0; overflow: hidden;">
+                <!-- En-tête avec image de fond -->
+                <table role="presentation" cellpadding="0" cellspacing="0" style="width: 100%;">
+                    <tr>
+                        <td style="position: relative; background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(142,142,142,0.8) 100%); padding: 40px 30px; text-align: center; border-radius: 0;">
+                            {% if newsletter.image_url %}
+                            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: -1;">
+                                <img src="{{ newsletter.image_url }}" alt="Header background"
+                                     style="width: 100%; height: 100%; object-fit: cover; opacity: 0.6;">
+                            </div>
+                            {% endif %}
+                            <h1 style="color: white; margin: 0; font-size: 32px; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
+                                {{ newsletter.title }}
+                            </h1>
+                            {% if newsletter.subtitle %}
+                            <h2 style="color: white; margin: 15px 0 25px 0; font-size: 22px; font-weight: normal; text-shadow: 1px 1px 3px rgba(0,0,0,0.5);">
+                                {{ newsletter.subtitle }}
+                            </h2>
+                            {% endif %}
+                            <a href="#" style="display: inline-block; background-color: #7FFFD4; color: #000000; padding: 12px 30px; border-radius: 25px; text-decoration: none; font-weight: bold; transition: all 0.3s ease; margin-top: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                                Découvrir notre site
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Contenu principal -->
+                <table role="presentation" cellpadding="0" cellspacing="0" style="width: 100%;">
+                    <tr>
+                        <td style="padding: 40px 30px;">
+                            <div style="color: #333333; font-size: 16px; line-height: 1.8; text-align: left;">
+                                {{ newsletter.main_content|linebreaks }}
+                            </div>
+
+                            {% if newsletter.quote %}
+                            <div style="margin: 35px 0; padding: 25px; border-left: 4px solid #7FFFD4; background-color: rgba(127, 255, 212, 0.1); font-style: italic; color: #2a2a2a; border-radius: 0 8px 8px 0;">
+                                {{ newsletter.quote }}
+                            </div>
+                            {% endif %}
+
+                            <div style="color: #333333; font-size: 16px; line-height: 1.8;">
+                                {{ newsletter.conclusion|linebreaks }}
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Pied de page -->
+                <table role="presentation" cellpadding="0" cellspacing="0" style="width: 100%; background-color: #f8f8f8;">
+                    <tr>
+                        <td style="padding: 35px 30px; text-align: center; border-top: 3px solid #7FFFD4;">
+                            <!-- Réseaux sociaux -->
+                            <p style="margin: 0 0 20px 0; color: #666666; font-size: 16px; font-weight: bold;">
+                                Suivez Fox sur les réseaux 🦊
+                            </p>
+                            <div style="margin-bottom: 25px;">
+                                <a href="#" style="display: inline-block; margin: 0 12px; color: #333333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Twitter</a>
+                                <a href="#" style="display: inline-block; margin: 0 12px; color: #333333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Instagram</a>
+                                <a href="#" style="display: inline-block; margin: 0 12px; color: #333333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">LinkedIn</a>
+                            </div>
+
+                            <!-- Copyright et désabonnement -->
+                            <p style="margin: 0 0 10px 0; color: #666666; font-size: 14px;">
+                                © {{ year }} Fox Newsletter - Tous droits réservés
+                            </p>
+                            <p style="margin: 0; color: #666666; font-size: 13px;">
+                                Vous recevez cet email car vous êtes inscrit à notre newsletter.
+                                <br>
+                                <a href="#" style="color: #7FFFD4; text-decoration: none; margin-top: 8px; display: inline-block;">Gérer mes préférences d'email</a>
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

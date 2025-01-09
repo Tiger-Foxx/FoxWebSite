@@ -91,5 +91,15 @@ class Annonce(models.Model):
 
 
 
+class Newsletter(models.Model):
+    title = models.CharField(max_length=200)
+    subtitle = models.CharField(max_length=200, blank=True)
+    main_content = models.TextField()
+    quote = models.TextField(blank=True)
+    conclusion = models.TextField()
+    image_url = models.URLField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.title
     

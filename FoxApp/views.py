@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.shortcuts import redirect, render
 from markdown_it.rules_inline import image
 
@@ -87,6 +89,8 @@ def subscribe(request):
         visiteur.save()
         message=f'Merci ! {email} Vous recevrez nos nouvelles par email ! '
         envoyer_email(message='Merci de votre visite  ! vous recevrez toutes les dernières NEWS Tech de FOX , BISOU',email=email,sujet='BIENVENUE CHEZ FOX !!!')
+        envoyer_email(message="Un Nouveau souscrivant a votre Newsletter , il s'agit de : "+email,email="donfackarthur750@gmail.com",sujet='NOUVEAU SOUSCRIVANT NEWSLETTER : '+email)
+
     except:
         message=f'Merci ! {email} mais vous recevez dejà nos nouvelles par email ! '
     return redirect('success',message=message)
@@ -220,3 +224,53 @@ def envoyer_email(email, sujet, message):
     except Exception as e:
         print(f"Erreur lors de l'envoi de l'email à {email}: {e}")
 
+
+from django.contrib.auth.decorators import user_passes_test
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def send_newsletter(request):
+    template = 'FoxApp/newsletter-form.html'
+
+    if request.method == 'POST':
+        newsletter = Newsletter.objects.create(
+            title=request.POST.get('title'),
+            subtitle=request.POST.get('subtitle'),
+            main_content=request.POST.get('main_content'),
+            quote=request.POST.get('quote'),
+            conclusion=request.POST.get('conclusion'),
+            image_url=request.POST.get('image_url')
+        )
+
+        # Contexte pour le template
+        context = {
+            'newsletter': newsletter,
+            'year': datetime.now().year,
+        }
+
+        # Génération du contenu HTML
+        html_content = render_to_string('FoxApp/email/newsletter_template.html', context)
+        text_content = strip_tags(html_content)  # Version texte pour fallback
+
+        # Préparation et envoi de l'email
+        subject = f"Fox : {newsletter.title}"
+
+        for subscriber in Visiteur.objects.all():
+            try:
+                msg = EmailMultiAlternatives(
+                    subject,
+                    text_content,
+                    settings.EMAIL_HOST_USER,
+                    [subscriber.email]
+                )
+                msg.attach_alternative(html_content, "text/html")
+                msg.send()
+            except Exception as e:
+                print(f"Erreur d'envoi à {subscriber.email}: {e}")
+
+        return redirect('success', message='Newsletter envoyée avec succès! 🎉')
+
+    return render(request, template)

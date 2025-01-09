@@ -1,0 +1,52 @@
+{# templates/FoxApp/newsletter-form.html #}
+
+<div class="max-w-4xl mx-auto p-6 bg-gray-900 rounded-lg shadow-xl">
+    <h2 class="text-3xl font-bold mb-6 text-aqua">Créer une nouvelle Newsletter Fox</h2>
+
+    <form method="post" class="space-y-6">
+        {% csrf_token %}
+
+        <div class="space-y-4">
+            <div>
+                <label for="title" class="block text-aqua font-medium mb-2">Titre Principal</label>
+                <input type="text" id="title" name="title" required
+                       class="w-full p-3 bg-gray-800 border border-aqua rounded-lg text-white focus:ring-2 focus:ring-aqua">
+            </div>
+
+            <div>
+                <label for="subtitle" class="block text-aqua font-medium mb-2">Sous-titre (optionnel)</label>
+                <input type="text" id="subtitle" name="subtitle"
+                       class="w-full p-3 bg-gray-800 border border-aqua rounded-lg text-white focus:ring-2 focus:ring-aqua">
+            </div>
+
+            <div>
+                <label for="main_content" class="block text-aqua font-medium mb-2">Contenu Principal</label>
+                <textarea id="main_content" name="main_content" rows="6" required
+                          class="w-full p-3 bg-gray-800 border border-aqua rounded-lg text-white focus:ring-2 focus:ring-aqua"></textarea>
+            </div>
+
+            <div>
+                <label for="quote" class="block text-aqua font-medium mb-2">Citation Inspirante (optionnel)</label>
+                <textarea id="quote" name="quote" rows="3"
+                          class="w-full p-3 bg-gray-800 border border-aqua rounded-lg text-white focus:ring-2 focus:ring-aqua"></textarea>
+            </div>
+
+            <div>
+                <label for="conclusion" class="block text-aqua font-medium mb-2">Conclusion</label>
+                <textarea id="conclusion" name="conclusion" rows="4" required
+                          class="w-full p-3 bg-gray-800 border border-aqua rounded-lg text-white focus:ring-2 focus:ring-aqua"></textarea>
+            </div>
+
+            <div>
+                <label for="image_url" class="block text-aqua font-medium mb-2">URL de l'image (optionnel)</label>
+                <input type="url" id="image_url" name="image_url"
+                       class="w-full p-3 bg-gray-800 border border-aqua rounded-lg text-white focus:ring-2 focus:ring-aqua">
+            </div>
+        </div>
+
+        <button type="submit"
+                class="w-full py-3 px-6 bg-aqua text-gray-900 font-bold rounded-lg hover:bg-opacity-90 transition-colors">
+            Envoyer la Newsletter 🦊
+        </button>
+    </form>
+</div>
