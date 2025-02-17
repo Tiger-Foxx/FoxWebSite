@@ -33,8 +33,7 @@ class Project(models.Model):
     sujet=models.CharField(max_length=328,blank=True)
     date=models.DateField(blank=True)
     demo=models.URLField(blank=True)
-    signature=models.ImageField(upload_to='PhotoFox')
-    cv=models.FileField(upload_to='FilesFox')
+
 
     def __str__(self):
         return f"PROJET | {self.nom.capitalize()} | {self.categorie.capitalize()}" 
@@ -43,7 +42,7 @@ class Project(models.Model):
 class Post(models.Model):
     titre=models.CharField(max_length=328)
     description=models.TextField()
-    photo500_x_800=models.ImageField(upload_to='PhotoFox',blank=True)
+    photo500_x_800=models.ImageField(upload_to='PhotoFox')
     photo800_x_533=models.ImageField(upload_to='PhotoFox',blank=True)
     categorie=models.CharField(max_length=328)
     auteur=models.CharField(max_length=328,blank=True)

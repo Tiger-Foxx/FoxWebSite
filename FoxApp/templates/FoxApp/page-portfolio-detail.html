@@ -10,12 +10,12 @@
                 <div class="row mt-5 justify-content-center">
                     <div class="col-lg-12 text-center">
                         <div class="page-next-level">
-                            <h4 class="title"> Project Name </h4>
+                            <h4 class="title"> {{ projet.nom }} </h4>
                             <ul class="page-next bg-light d-inline-block py-2 px-4 mt-3 rounded mb-0">
                                 <li><a href="index.html" class="text-dark">Fox</a></li>
                                 <li><a href="page-portfolio.html" class="text-dark">Projets</a></li> 
                                 <li>
-                                    <span class="text-primary"> Project Detail</span> 
+                                    <span class="text-primary"> {{ projet.nom }}</span>
                                 </li> 
                             </ul>
                         </div>
@@ -34,9 +34,8 @@
                         <div class="row mr-lg-4">
                             <div class="col-lg-12">
                                 <div class="work-details">
-                                    <h4 class="title mb-3 border-bottom pb-3">Project Name :</h4>
-                                    <p class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit totam atque dignissimos porro, exercitationem, neque alias ea aliquid quibusdam voluptates impedit maxime aut asperiores consequatur iste. Corporis fuga ducimus dignissimos. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci non dolorem consequatur vitae hic.</p>
-                                    <p class="text-muted mb-0">Suscipit totam atque dignissimos porro, exercitationem, neque alias ea aliquid quibusdam voluptates impedit maxime aut asperiores consequatur iste. Corporis fuga ducimus dignissimos.</p>
+                                    <h4 class="title mb-3 border-bottom pb-3">{{ projet.nom}} :</h4>
+                                    <p class="text-muted">{{ projet.description }}</p>
                                 </div>
                             </div><!--end col-->
                             
@@ -45,32 +44,30 @@
                                     <h4 class="title border-bottom pb-3 mb-3">Project Info :</h4>
                                     <ul class="list-unstyled mb-0">
                                         <li class="mt-3">
-                                            <b>Client :</b>
-                                            <span>Alita Margarate</span>
+                                            <b>Concepteur :</b>
+                                            <span>Fox</span>
                                         </li>
                                         <li class="mt-3">
-                                            <b>Category :</b>
-                                            <span>Web Design</span>
+                                            <b>Categorie :</b>
+                                            <span>{{ projet.categorie}}</span>
                                         </li>
                                         <li class="mt-3">
-                                            <b>Subject :</b>
-                                            <span>Web Design</span>
+                                            <b>Sujet :</b>
+                                            <span>{{ projet.sujet}}</span>
                                         </li>
                                         <li class="mt-3">
                                             <b>Date :</b>
-                                            <span>28th April, 2020</span>
+                                            <span>{{ projet.date}}</span>
                                         </li>
+
                                         <li class="mt-3">
-                                            <b>Website :</b>
-                                            <span>www.yourdomain.com</span>
-                                        </li>
-                                        <li class="mt-3">
-                                            <b>Location :</b>
-                                            <span>3/2/64 Mongus Street, UK</span>
-                                        </li>
-                                        <li class="mt-3">
-                                            <b>Demo :</b>
-                                            <span><a href="https://1.envato.market/9a71E" target="_blank" class="text-primary">Demo link</a></span>
+                                            <b>Demo ou Repo :</b>
+                                            {% if projet.demo %}
+                                            <span><a href="{{ projet.demo}}" target="_blank" class="text-primary">Demo ou Repo</a></span>
+                                            {% else %}
+                                            <span><a href="#" target="_blank" class="text-primary">Demo indisponible</a></span>
+                                            {% endif %}
+
                                         </li>
                                     </ul>                          
                                 </div>
@@ -80,9 +77,14 @@
 
                     <div class="col-lg-5 col-md-6 order-1 order-md-2">
                         <div class="port-images sticky-sidebar">
-                            <img src="images/portfolio/1.jpg" class="img-fluid mx-auto d-block rounded" alt="img">
-                            <img src="images/portfolio/2.jpg" class="img-fluid mx-auto d-block rounded mt-4" alt="img">
-                            <img src="images/portfolio/3.jpg" class="img-fluid mx-auto d-block rounded mt-4" alt="img">
+                            <img src="{{ projet.photo1_800_x_550.url }}" class="img-fluid mx-auto d-block rounded" alt="img">
+
+                            {% if projet.photo2_800_x_550  %}
+                             <img src="{{ projet.photo2_800_x_550.url }}" class="img-fluid mx-auto d-block rounded mt-4" alt="img">
+                            {% endif %}
+                           {% if projet.photo3_800_x_550  %}
+                            <img src="{{ projet.photo3_800_x_550.url }}" class="img-fluid mx-auto d-block rounded mt-4" alt="img">
+                        {% endif %}
                         </div>
                     </div><!--end col-->
                 </div><!--end row-->

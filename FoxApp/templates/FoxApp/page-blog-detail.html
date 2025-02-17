@@ -4,23 +4,23 @@
 {% load static %}
 
         <!-- Home Start -->
-        <section class="bg-half d-table w-100" style="background: url('{% static 'images/home/bg-pages.jpg' %}')center center;">
+        <section class="bg-half d-table w-100" style="background: url('{% static 'images/bg-blog.jpg' %}')center center;">
             <div class="bg-overlay bg-overlay-black"></div>
             <div class="container">
                 <div class="row mt-5 justify-content-center">
                     <div class="col-lg-12 text-center">
                         <div class="page-next-level">
-                            <h4 class="title text-white"> Three Reasons Visibility Matters in Supply Chain </h4>
+                            <h4 class="title text-white"> {{ post.titre }} </h4>
                             <ul class="list-unstyled mt-3">
-                                <li class="list-inline-item mr-3"><i class="mdi mdi-tag-outline mr-1"></i><a href="javascript:void(0)" class="text-muted">Photography</a></li>
+                                <li class="list-inline-item mr-3"><i class="mdi mdi-tag-outline mr-1"></i><a href="javascript:void(0)" class="text-muted">{{ post.categorie }}</a></li>
                                 <li class="list-inline-item mr-3"><i class="mdi mdi-account-heart mr-1"></i><a href="javascript:void(0)" class="text-muted">The Fox</a></li>
-                                <li class="list-inline-item"><i class="mdi mdi-calendar-edit mr-1"></i><span class="text-muted">25th April, 2024</span> </li>
+                                <li class="list-inline-item"><i class="mdi mdi-calendar-edit mr-1"></i><span class="text-muted">{{ post.date}}</span> </li>
                             </ul>
                             <ul class="page-next bg-light d-inline-block py-2 px-4 mt-3 rounded mb-0">
                                 <li><a href="index.html" class="text-dark">Fox</a></li>
                                 <li><a href="page-blog.html" class="text-dark">Blog</a></li> 
                                 <li>
-                                    <span class="text-primary"> Blog Detail</span> 
+                                    <span class="text-primary">{{ post.titre }}</span>
                                 </li> 
                             </ul>
                         </div>
@@ -36,20 +36,23 @@
                 <div class="row">
                     <div class="col-lg-5 col-md-4">
                         <div class="sticky-sidebar">
-                            <img src="images/blog/single-1.jpg" class="img-fluid rounded d-block" alt="">
-                            <img src="images/blog/06.jpg" class="img-fluid rounded mt-4" alt="">
+                            <img src="{{ post.photo500_x_800 }}" class="img-fluid rounded d-block" alt="{{ post.titre }}">
+                            {% if photo800_x_533 %}
+                                <img src="{{ post.photo800_x_533 }}" class="img-fluid rounded mt-4" alt="{{ post.titre }}">
+                            {% endif %}
+
                         </div>
                     </div>
                     <!-- BLog Start -->
                     <div class="col-lg-7 col-md-8 mt-4 mt-sm-0 pt-2 pt-sm-0">
                         <div class="blog position-relative overflow-hidden shadow rounded">
                             <div class="content p-4">
-                                <h6 class="font-weight-normal"><i class="mdi mdi-tag text-primary mr-1"></i><a href="javscript:void(0)" class="text-primary">Photography</a></h6>
-                                <p class="text-muted mt-3">The most well-known dummy text is the 'Lorem Ipsum', which is said to have originated in the 16th century. Lorem Ipsum is composed in a pseudo-Latin language which more or less corresponds to 'proper' Latin. It contains a series of real Latin words. This ancient dummy text is also incomprehensible, but it imitates the rhythm of most European languages in Latin script. </p>
+                                <h6 class="font-weight-normal"><i class="mdi mdi-tag text-primary mr-1"></i><a href="javscript:void(0)" class="text-primary">{{ post.categorie }}</a></h6>
+                                <p class="text-muted mt-3">{{post.contenuP1}}</p>
                                 <blockquote class="blockquote mt-3 p-3">
-                                    <p class="text-muted mb-0 font-italic">" There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. "</p>
+                                        <p class="text-muted mb-0 font-italic">" {{post.contenuSitation}} "</p>
                                 </blockquote>
-                                <p class="text-muted">The advantage of its Latin origin and the relative meaninglessness of Lorum Ipsum is that the text does not attract attention to itself or distract the viewer's attention from the layout.</p>
+                                <p class="text-muted">{{post.contenuConclusion}}</p>
                                 <div class="post-meta mt-3">
                                     <ul class="list-unstyled mb-0">
                                         <li class="list-inline-item float-right">
@@ -62,7 +65,7 @@
                                             </ul>
                                         </li>
                                         <li class="list-inline-item mr-2"><a href="javascript:void(0)" class="text-muted like"><i class="mdi mdi-heart-outline mr-1"></i>33</a></li>
-                                        <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted comments"><i class="mdi mdi-comment-outline mr-1"></i>08</a></li>
+                                        <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted comments"><i class="mdi mdi-comment-outline mr-1"></i>{{ commentaires.count }}</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -141,59 +144,33 @@
                         </div>
                     </div><!--end col-->
                 </div><!--end row-->
+              
+                 
                
                 <div class="row">
+                    {% for post in posts %}
                     <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
                         <div class="blog-post rounded shadow">
-                            <img src="images/blog/01.jpg" class="img-fluid rounded-top" alt="">
+                            {% if post.photo500_x_800 %}
+                              <img src="{{ post.photo500_x_800 }}" class="img-fluid rounded-top" alt="{{ post.titre }}">
+                            {% endif %}
                             <div class="content pt-4 pb-4 p-3">
                                 <ul class="list-unstyled d-flex justify-content-between post-meta">
-                                            <li><i data-feather="user" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">The Fox</a></li> 
-                                            <li><i data-feather="tag" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">Branding</a></li>                                    
+                                            <li><i data-feather="user" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">{{ post.auteur }}</a></li> 
+                                            <li><i data-feather="tag" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">{{ post.categorie }}</a></li>                                    
                                         </ul>  
-                                <h5 class="mb-3"><a href="page-blog-detail.html" class="title text-dark">Our Home Entertainment has Evolved Significantly</a></h5> 
+                                <h5 class="mb-3"><a href="{% url 'post' post.id %}" class="title text-dark">{{ post.titre | slice:"0:50" }} ...</a></h5> 
                                 <ul class="list-unstyled mb-0 pt-3 border-top d-flex justify-content-between">
                                     <li><a href="javascript:void(0)" class="text-dark">Voir plus <i data-feather="chevron-right" class="fea icon-sm"></i></a></li>
-                                    <li><i class="mdi mdi-calendar-edit mr-1"></i>10th April, 2024</li>
+                                    <li><i class="mdi mdi-calendar-edit mr-1"></i>{{post.date}}</li>
                                 </ul>
                             </div><!--end content-->
                         </div><!--end blog post-->
                     </div><!--end col-->
+                    {% endfor %}
 
-                    <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-                        <div class="blog-post rounded shadow">
-                            <img src="images/blog/02.jpg" class="img-fluid rounded-top" alt="">
-                            <div class="content pt-4 pb-4 p-3">
-                                <ul class="list-unstyled d-flex justify-content-between post-meta">
-                                            <li><i data-feather="user" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">The Fox</a></li> 
-                                            <li><i data-feather="tag" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">Branding</a></li>                                    
-                                        </ul> 
-                                <h5 class="mb-3"><a href="page-blog-detail.html" class="title text-dark">These Are The Voyages of The Starship Enterprise</a></h5>
-                                <ul class="list-unstyled mb-0 pt-3 border-top d-flex justify-content-between">
-                                    <li><a href="javascript:void(0)" class="text-dark">Voir plus <i data-feather="chevron-right" class="fea icon-sm"></i></a></li>
-                                    <li><i class="mdi mdi-calendar-edit mr-1"></i>10th April, 2024</li>
-                                </ul>
-                            </div><!--end content-->
-                        </div><!--end blog post-->
-                    </div><!--end col-->
-
-                    <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-                        <div class="blog-post rounded shadow">
-                            <img src="images/blog/03.jpg" class="img-fluid rounded-top" alt="">
-                            <div class="content pt-4 pb-4 p-3">
-                                <ul class="list-unstyled d-flex justify-content-between post-meta">
-                                            <li><i data-feather="user" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">The Fox</a></li> 
-                                            <li><i data-feather="tag" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">Branding</a></li>                                    
-                                        </ul> 
-                                <h5 class="mb-3"><a href="page-blog-detail.html" class="title text-dark">Three Reasons Visibility Matters in Supply Chain</a></h5>
-                                <ul class="list-unstyled mb-0 pt-3 border-top d-flex justify-content-between">
-                                    <li><a href="javascript:void(0)" class="text-dark">Voir plus <i data-feather="chevron-right" class="fea icon-sm"></i></a></li>
-                                    <li><i class="mdi mdi-calendar-edit mr-1"></i>10th April, 2024</li>
-                                </ul>
-                            </div><!--end content-->
-                        </div><!--end blog post-->
-                    </div><!--end col-->
                 </div><!--end row-->
+               
             </div><!--end container-->
         </section>
         <!-- Blog -->
