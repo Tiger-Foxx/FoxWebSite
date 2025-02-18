@@ -112,59 +112,28 @@
                         </div>
                     </div><!--end col-->
                 </div><!--end row-->
-
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-                        <div class="blog-post rounded shadow">
-                            <img src="images/blog/01.jpg" class="img-fluid rounded-top" alt="">
-                            <div class="content pt-4 pb-4 p-3">
-                                <ul class="list-unstyled d-flex justify-content-between post-meta">
-                                            <li><i data-feather="user" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">Cristino</a></li> 
-                                            <li><i data-feather="tag" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">Branding</a></li>                                    
-                                        </ul>  
-                                <h5 class="mb-3"><a href="page-blog-detail.html" class="title text-dark">Our Home Entertainment has Evolved Significantly</a></h5> 
-                                <ul class="list-unstyled mb-0 pt-3 border-top d-flex justify-content-between">
-                                    <li><a href="javascript:void(0)" class="text-dark">Read More <i data-feather="chevron-right" class="fea icon-sm"></i></a></li>
-                                    <li><i class="mdi mdi-calendar-edit mr-1"></i>10th April, 2020</li>
-                                </ul>
-                            </div><!--end content-->
-                        </div><!--end blog post-->
-                    </div><!--end col-->
-
-                    <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-                        <div class="blog-post rounded shadow">
-                            <img src="images/blog/02.jpg" class="img-fluid rounded-top" alt="">
-                            <div class="content pt-4 pb-4 p-3">
-                                <ul class="list-unstyled d-flex justify-content-between post-meta">
-                                            <li><i data-feather="user" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">Cristino</a></li> 
-                                            <li><i data-feather="tag" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">Branding</a></li>                                    
-                                        </ul> 
-                                <h5 class="mb-3"><a href="page-blog-detail.html" class="title text-dark">These Are The Voyages of The Starship Enterprise</a></h5>
-                                <ul class="list-unstyled mb-0 pt-3 border-top d-flex justify-content-between">
-                                    <li><a href="javascript:void(0)" class="text-dark">Read More <i data-feather="chevron-right" class="fea icon-sm"></i></a></li>
-                                    <li><i class="mdi mdi-calendar-edit mr-1"></i>10th April, 2020</li>
-                                </ul>
-                            </div><!--end content-->
-                        </div><!--end blog post-->
-                    </div><!--end col-->
-
-                    <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-                        <div class="blog-post rounded shadow">
-                            <img src="images/blog/03.jpg" class="img-fluid rounded-top" alt="">
-                            <div class="content pt-4 pb-4 p-3">
-                                <ul class="list-unstyled d-flex justify-content-between post-meta">
-                                            <li><i data-feather="user" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">Cristino</a></li> 
-                                            <li><i data-feather="tag" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">Branding</a></li>                                    
-                                        </ul> 
-                                <h5 class="mb-3"><a href="page-blog-detail.html" class="title text-dark">Three Reasons Visibility Matters in Supply Chain</a></h5>
-                                <ul class="list-unstyled mb-0 pt-3 border-top d-flex justify-content-between">
-                                    <li><a href="javascript:void(0)" class="text-dark">Read More <i data-feather="chevron-right" class="fea icon-sm"></i></a></li>
-                                    <li><i class="mdi mdi-calendar-edit mr-1"></i>10th April, 2020</li>
-                                </ul>
-                            </div><!--end content-->
-                        </div><!--end blog post-->
-                    </div><!--end col-->
-                </div><!--end row-->
+                    {% for post in posts %}
+                        <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
+                            <div class="blog-post rounded shadow">
+                                {% if post.photo500_x_800 %}
+                                  <img src="{{ post.photo500_x_800.url }}" class="img-fluid rounded-top" alt="{{ post.titre }}">
+                                {% endif %}
+                                <div class="content pt-4 pb-4 p-3">
+                                    <ul class="list-unstyled d-flex justify-content-between post-meta">
+                                                <li><i data-feather="user" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">{{ post.auteur }}</a></li> 
+                                                <li><i data-feather="tag" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">{{ post.categorie }}</a></li>                                    
+                                            </ul>  
+                                    <h5 class="mb-3"><a href="{% url 'post' post.id %}" class="title text-dark">{{ post.titre | slice:"0:50" }} ...</a></h5> 
+                                    <ul class="list-unstyled mb-0 pt-3 border-top d-flex justify-content-between">
+                                        <li><a href="javascript:void(0)" class="text-dark">Voir plus <i data-feather="chevron-right" class="fea icon-sm"></i></a></li>
+                                        <li><i class="mdi mdi-calendar-edit mr-1"></i>{{post.date}}</li>
+                                    </ul>
+                                </div><!--end content-->
+                            </div><!--end blog post-->
+                        </div><!--end col-->
+                    {% endfor %}
+                </div>
             </div><!--end container-->
             
             <div class="container mt-100 mt-60">

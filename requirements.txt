@@ -5,3 +5,4 @@ python-environ==0.4.54
 sqlparse==0.4.3
 tzdata==2022.7
 whitenoise==6.6.0
+django-markdown-deux

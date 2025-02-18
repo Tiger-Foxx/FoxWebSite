@@ -48,6 +48,10 @@ class Post(models.Model):
     auteur=models.CharField(max_length=328,blank=True)
     date=models.DateField(auto_now_add=True)
     contenuP1=models.TextField(blank=True,null=True)
+    contenuP2=models.TextField(blank=True,null=True)
+    contenuP3=models.TextField(blank=True,null=True)
+    contenuP4=models.TextField(blank=True,null=True)
+
     contenuConclusion=models.TextField(blank=True,null=True)
     contenuSitation=models.TextField(blank=True,null=True)
 

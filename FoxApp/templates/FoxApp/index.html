@@ -12,9 +12,9 @@
                     <div class="title-heading">
                         <img src="{% static 'images/home/hero.jpg' %}" class="img-fluid rounded-circle" alt="" />
                         <h3 class="heading text-light title-dark mt-3">
-                            Fox est
+                            Fox : 
                             <span class="element text-primary"
-                                data-elements="Développeur Mobile, Développeur Web, Hacker Ethique, Développeur Software"></span>
+                                data-elements="Dev Mobile, Dev Web, Dev Software, Hacker Ethique"></span>
                         </h3>
                         <p class="para-desc mx-auto text-white-50">
                             Service  expert en Développement, Hacking Ethique,
@@ -994,20 +994,25 @@
                 	<div class="col-lg-4 col-md-6 mt-4 pt-2 {{ projet.categorie}}">
                     <div class="portfolio-box rounded shadow position-relative overflow-hidden">
                         <div class="portfolio-box-img position-relative overflow-hidden">
-                            <img src="{{ projet.photo1_800_x_550.url }}" class="img-fluid" alt="{{ projet.nom }}" />
+                            <img src="{{ projet.photo1_800_x_550.url }}" 
+                                 class="img-fluid" 
+                                 alt="{{ projet.nom }}" 
+                                 style="height: 250px; width: 100%; object-fit: cover;" />
                             <div class="overlay-work">
                                 <div class="work-content text-center">
                                     <a href="{{ projet.photo1_800_x_550.url }}"
-                                        class="text-light work-icon bg-dark d-inline-block rounded-pill mfp-image"><i
-                                            data-feather="camera" class="fea icon-sm image-icon"></i></a>
+                                        class="text-light work-icon bg-dark d-inline-block rounded-pill mfp-image">
+                                        <i data-feather="camera" class="fea icon-sm image-icon"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="gallary-title py-4 text-center">
                             <h5>
                                 {% if projet.demo %}
                                 <a href="{% url 'projet' projet.id %}" class="title text-dark">{{ projet.nom }} </a>
-                                    <a href="{{ projet.demo }}" class="title text-dark">Demo</a>
+                                    <a href="{{ projet.demo }}" class="title text-red"> :Demo</a>
                                 {% else %}
                                     <a href="{% url 'projet' projet.id %}" class="title text-dark">{{ projet.nom }}</a>
                                 {% endif %}
@@ -1395,7 +1400,7 @@
                     <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
                         <div class="blog-post rounded shadow">
                             {% if post.photo500_x_800 %}
-                              <img src="{{ post.photo500_x_800 }}" class="img-fluid rounded-top" alt="{{ post.titre }}">
+                              <img src="{{ post.photo500_x_800.url }}" class="img-fluid rounded-top" alt="{{ post.titre }}">
                             {% endif %}
                             <div class="content pt-4 pb-4 p-3">
                                 <ul class="list-unstyled d-flex justify-content-between post-meta">

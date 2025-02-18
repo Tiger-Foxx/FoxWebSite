@@ -15,7 +15,7 @@ from .models import Visiteur, Annonce
 
 def index(request):
     template='FoxApp/index.html'
-    projets= Project.objects.all()
+    projets= Project.objects.all()[:15]
     posts=Post.objects.all()[:3]
     profile=Profile.objects.all()[0]
     

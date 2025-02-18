@@ -2,6 +2,7 @@
 
 {% block content %}
 {% load static %}
+{% load markdown_extras %}
 
         <!-- Home Start -->
         <section class="bg-half d-table w-100" style="background: url('{% static 'images/bg-blog.jpg' %}')center center;">
@@ -36,11 +37,10 @@
                 <div class="row">
                     <div class="col-lg-5 col-md-4">
                         <div class="sticky-sidebar">
-                            <img src="{{ post.photo500_x_800 }}" class="img-fluid rounded d-block" alt="{{ post.titre }}">
-                            {% if photo800_x_533 %}
-                                <img src="{{ post.photo800_x_533 }}" class="img-fluid rounded mt-4" alt="{{ post.titre }}">
+                            <img src="{{ post.photo500_x_800.url }}" class="img-fluid rounded d-block" alt="{{ post.titre }}">
+                            {% if post.photo800_x_533 %}
+                                <img src="{{ post.photo800_x_533.url }}" class="img-fluid rounded mt-4" alt="{{ post.titre }}">
                             {% endif %}
-
                         </div>
                     </div>
                     <!-- BLog Start -->
@@ -48,11 +48,31 @@
                         <div class="blog position-relative overflow-hidden shadow rounded">
                             <div class="content p-4">
                                 <h6 class="font-weight-normal"><i class="mdi mdi-tag text-primary mr-1"></i><a href="javscript:void(0)" class="text-primary">{{ post.categorie }}</a></h6>
-                                <p class="text-muted mt-3">{{post.contenuP1}}</p>
+                                
+                                <div class="markdown-content">
+                                    {{ post.contenuP1|safe }}
+                                    
+                                    {% if post.contenuP2 %}
+                                    {{ post.contenuP2|safe }}
+                                    {% endif %}
+                                    
+                                    {% if post.contenuP3 %}
+                                    {{ post.contenuP3|md|safe }}
+                                    {% endif %}
+                                    
+                                    {% if post.contenuP4 %}
+                                    {{ post.contenuP4|md|safe }}
+                                    {% endif %}
+                                </div>
+
                                 <blockquote class="blockquote mt-3 p-3">
-                                        <p class="text-muted mb-0 font-italic">" {{post.contenuSitation}} "</p>
+                                    <p class="text-muted mb-0 font-italic">" {{post.contenuSitation}} "</p>
                                 </blockquote>
-                                <p class="text-muted">{{post.contenuConclusion}}</p>
+                                
+                                <div class="markdown-content">
+                                    {{ post.contenuConclusion|md|safe }}
+                                </div>
+
                                 <div class="post-meta mt-3">
                                     <ul class="list-unstyled mb-0">
                                         <li class="list-inline-item float-right">
@@ -89,7 +109,6 @@
                                         </div>
                                     </li>
                                     {% endfor %}
-
                                 </ul>
                             </div>
                         </div>
@@ -144,21 +163,19 @@
                         </div>
                     </div><!--end col-->
                 </div><!--end row-->
-              
-                 
-               
+
                 <div class="row">
                     {% for post in posts %}
                     <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
                         <div class="blog-post rounded shadow">
                             {% if post.photo500_x_800 %}
-                              <img src="{{ post.photo500_x_800 }}" class="img-fluid rounded-top" alt="{{ post.titre }}">
+                              <img src="{{ post.photo500_x_800.url }}" class="img-fluid rounded-top" alt="{{ post.titre }}">
                             {% endif %}
                             <div class="content pt-4 pb-4 p-3">
                                 <ul class="list-unstyled d-flex justify-content-between post-meta">
-                                            <li><i data-feather="user" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">{{ post.auteur }}</a></li> 
-                                            <li><i data-feather="tag" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">{{ post.categorie }}</a></li>                                    
-                                        </ul>  
+                                    <li><i data-feather="user" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">{{ post.auteur }}</a></li> 
+                                    <li><i data-feather="tag" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">{{ post.categorie }}</a></li>                                    
+                                </ul>  
                                 <h5 class="mb-3"><a href="{% url 'post' post.id %}" class="title text-dark">{{ post.titre | slice:"0:50" }} ...</a></h5> 
                                 <ul class="list-unstyled mb-0 pt-3 border-top d-flex justify-content-between">
                                     <li><a href="javascript:void(0)" class="text-dark">Voir plus <i data-feather="chevron-right" class="fea icon-sm"></i></a></li>
@@ -168,9 +185,7 @@
                         </div><!--end blog post-->
                     </div><!--end col-->
                     {% endfor %}
-
                 </div><!--end row-->
-               
             </div><!--end container-->
         </section>
         <!-- Blog -->
