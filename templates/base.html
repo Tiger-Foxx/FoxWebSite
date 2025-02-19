@@ -1,15 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="fr">
 <head>
     {% load static %}
     <meta charset="utf-8" />
-    <title>Fox - Service d'ingénierie Informatique</title>
+    
+    {# Permettre aux pages enfants de surcharger le titre #}
+    <title>{% block title %}Fox - Service d'ingénierie Informatique{% endblock %}</title>
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Fox Service de  Developpement et ingenieurie logicielle " />
-    <meta name="keywords"
-        content="Developpement, web, mobile, Desktop, python , django, flutter,service,developpement" />
-    <meta content="Shreethemes" name="Fox" />
+    
+    {# Bloc pour les métadonnées personnalisées #}
+    {% block meta %}
+    <meta name="description" content="Fox Service de Developpement et ingenieurie logicielle" />
+    <meta name="keywords" content="Developpement, web, mobile, Desktop, python, django, flutter, service, developpement" />
+    <meta name="author" content="Fox" />
+    
+    {# Meta tags par défaut pour le partage social #}
+    <meta property="og:title" content="Fox - Service d'ingénierie Informatique" />
+    <meta property="og:description" content="Fox Service de Developpement et ingenieurie logicielle" />
+    <meta property="og:image" content="{% static 'images/logo-fox-dark.png' %}" />
+    <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Fox" />
+    
+    {# Twitter Card tags #}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Fox - Service d'ingénierie Informatique" />
+    <meta name="twitter:description" content="Fox Service de Developpement et ingenieurie logicielle" />
+    <meta name="twitter:image" content="{% static 'images/logo-fox-dark.png' %}" />
+    {% endblock %}
+
+    {# Bloc pour les styles personnalisés #}
+    {% block extra_css %}{% endblock %}
+    
     <!-- favicon -->
     <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" />
     <!-- Bootstrap -->
@@ -18,7 +41,6 @@
     <link href="{% static 'css/magnific-popup.css' %}" rel="stylesheet" type="text/css" />
     <!-- Icon -->
     <link href="{% static 'css/materialdesignicons.min.css' %}" rel="stylesheet" type="text/css" />
-
     <!-- SLICK SLIDER -->
     <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" />
     <link rel="stylesheet" href="{% static 'css/owl.theme.css' %}" />
@@ -26,9 +48,10 @@
     <!-- Custom Css -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" id="theme-opt" />
     <link href="{% static 'css/colors/default.css' %}" rel="stylesheet" id="color-opt" />
-    <link rel="stylesheet"
-        href="https://cdn-uicons.flaticon.com/2.5.1/uicons-solid-straight/css/uicons-solid-straight.css" />
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.5.1/uicons-solid-straight/css/uicons-solid-straight.css" />
 </head>
+
+{# Le reste de votre template reste inchangé #}
 
 <body>
     <!-- Loader -->

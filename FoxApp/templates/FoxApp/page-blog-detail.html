@@ -1,192 +1,388 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Fox : {{ post.titre }}{% endblock %}
+
+{% block meta %}
+<meta name="description" content="{{ post.contenuP1|striptags|truncatechars:160 }}" />
+<meta name="keywords" content="{{ post.categorie }}, Fox, blog, {{ post.titre|lower }}" />
+<meta name="author" content="The Fox" />
+
+{# Open Graph Meta Tags pour le partage social #}
+<meta property="og:title" content="Fox : {{ post.titre }}" />
+<meta property="og:description" content="{{ post.contenuP1|striptags|truncatechars:160 }}" />
+<meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ post.photo500_x_800.url }}" />
+<meta property="og:url" content="{{ request.build_absolute_uri }}" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Fox Blog" />
+<meta property="article:published_time" content="{{ post.date|date:'c' }}" />
+<meta property="article:section" content="{{ post.categorie }}" />
+
+{# Twitter Card Tags #}
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Fox : {{ post.titre }}" />
+<meta name="twitter:description" content="{{ post.contenuP1|striptags|truncatechars:160 }}" />
+<meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{{ post.photo500_x_800.url }}" />
+
+{# Schema.org Markup pour les Rich Snippets #}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{ post.titre }}",
+  "image": "{{ request.scheme }}://{{ request.get_host }}{{ post.photo500_x_800.url }}",
+  "author": {
+    "@type": "Person",
+    "name": "The Fox"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Fox",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{% static 'images/logo-fox-dark.png' %}"
+    }
+  },
+  "datePublished": "{{ post.date|date:'c' }}",
+  "description": "{{ post.contenuP1|striptags|truncatechars:160 }}",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ request.build_absolute_uri }}"
+  }
+}
+</script>
+{% endblock %}
 
 {% block content %}
-{% load static %}
 {% load markdown_extras %}
 
-        <!-- Home Start -->
-        <section class="bg-half d-table w-100" style="background: url('{% static 'images/bg-blog.jpg' %}')center center;">
-            <div class="bg-overlay bg-overlay-black"></div>
-            <div class="container">
-                <div class="row mt-5 justify-content-center">
-                    <div class="col-lg-12 text-center">
-                        <div class="page-next-level">
-                            <h4 class="title text-white"> {{ post.titre }} </h4>
-                            <ul class="list-unstyled mt-3">
-                                <li class="list-inline-item mr-3"><i class="mdi mdi-tag-outline mr-1"></i><a href="javascript:void(0)" class="text-muted">{{ post.categorie }}</a></li>
-                                <li class="list-inline-item mr-3"><i class="mdi mdi-account-heart mr-1"></i><a href="javascript:void(0)" class="text-muted">The Fox</a></li>
-                                <li class="list-inline-item"><i class="mdi mdi-calendar-edit mr-1"></i><span class="text-muted">{{ post.date}}</span> </li>
-                            </ul>
-                            <ul class="page-next bg-light d-inline-block py-2 px-4 mt-3 rounded mb-0">
-                                <li><a href="index.html" class="text-dark">Fox</a></li>
-                                <li><a href="page-blog.html" class="text-dark">Blog</a></li> 
-                                <li>
-                                    <span class="text-primary">{{ post.titre }}</span>
-                                </li> 
-                            </ul>
-                        </div>
-                    </div>  <!--end col-->
-                </div><!--end row-->
-            </div> <!--end container-->
-        </section><!--end section-->
-        <!-- Home End -->
-
-        <!-- Blog STart -->
-        <section class="section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-5 col-md-4">
-                        <div class="sticky-sidebar">
-                            <img src="{{ post.photo500_x_800.url }}" class="img-fluid rounded d-block" alt="{{ post.titre }}">
-                            {% if post.photo800_x_533 %}
-                                <img src="{{ post.photo800_x_533.url }}" class="img-fluid rounded mt-4" alt="{{ post.titre }}">
-                            {% endif %}
-                        </div>
+<!-- Hero Section Start -->
+<section class="bg-half d-table w-100 position-relative" style="background: url('{% static 'images/bg-blog.jpg' %}') center center;">
+    <div class="bg-overlay bg-overlay-black"></div>
+    <div class="container position-relative">
+        <div class="row mt-5 justify-content-center">
+            <div class="col-lg-12 text-center">
+                <div class="page-next-level">
+                    <h1 class="title text-white display-4">{{ post.titre }}</h1>
+                    <div class="post-meta text-white-50 mt-3">
+                        <span class="mr-3"><i class="mdi mdi-tag-outline mr-1"></i>{{ post.categorie }}</span>
+                        <span class="mr-3"><i class="mdi mdi-account-heart mr-1"></i>The Fox</span>
+                        <span><i class="mdi mdi-calendar-edit mr-1"></i>{{ post.date|date:"d F Y" }}</span>
                     </div>
-                    <!-- BLog Start -->
-                    <div class="col-lg-7 col-md-8 mt-4 mt-sm-0 pt-2 pt-sm-0">
-                        <div class="blog position-relative overflow-hidden shadow rounded">
-                            <div class="content p-4">
-                                <h6 class="font-weight-normal"><i class="mdi mdi-tag text-primary mr-1"></i><a href="javscript:void(0)" class="text-primary">{{ post.categorie }}</a></h6>
-                                
-                                <div class="markdown-content">
-                                    {{ post.contenuP1|safe }}
-                                    
-                                    {% if post.contenuP2 %}
-                                    {{ post.contenuP2|safe }}
-                                    {% endif %}
-                                    
-                                    {% if post.contenuP3 %}
-                                    {{ post.contenuP3|md|safe }}
-                                    {% endif %}
-                                    
-                                    {% if post.contenuP4 %}
-                                    {{ post.contenuP4|md|safe }}
-                                    {% endif %}
-                                </div>
+                    <nav aria-label="breadcrumb" class="d-inline-block mt-4">
+                        <ul class="breadcrumb bg-light rounded py-2 px-4 mb-0">
+                            <li class="breadcrumb-item"><a href="{% url 'index' %}">Fox</a></li>
+                            <li class="breadcrumb-item"><a href="{% url 'blog' %}">Blog</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ post.titre }}</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Hero Section End -->
 
-                                <blockquote class="blockquote mt-3 p-3">
-                                    <p class="text-muted mb-0 font-italic">" {{post.contenuSitation}} "</p>
-                                </blockquote>
-                                
-                                <div class="markdown-content">
-                                    {{ post.contenuConclusion|md|safe }}
-                                </div>
+<!-- Blog Content Start -->
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <!-- Images Column -->
+            <div class="col-lg-5 col-md-4">
+                <div class="sticky-sidebar">
+                    <img src="{{ post.photo500_x_800.url }}" class="img-fluid rounded shadow-lg" alt="{{ post.titre }}">
+                    {% if post.photo800_x_533 %}
+                        <img src="{{ post.photo800_x_533.url }}" class="img-fluid rounded shadow-lg mt-4" alt="{{ post.titre }}">
+                    {% endif %}
+                </div>
+            </div>
 
-                                <div class="post-meta mt-3">
-                                    <ul class="list-unstyled mb-0">
-                                        <li class="list-inline-item float-right">
-                                            <ul class="list-unstyled">
-                                                <li class="list-inline-item">Share :</li>
-                                                <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted"><i class="mdi mdi-facebook"></i></a></li>
-                                                <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted"><i class="mdi mdi-instagram"></i></a></li>
-                                                <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted"><i class="mdi mdi-google-plus"></i></a></li>
-                                                <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted"><i class="mdi mdi-twitter"></i></a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="list-inline-item mr-2"><a href="javascript:void(0)" class="text-muted like"><i class="mdi mdi-heart-outline mr-1"></i>33</a></li>
-                                        <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted comments"><i class="mdi mdi-comment-outline mr-1"></i>{{ commentaires.count }}</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+            <!-- Content Column -->
+            <div class="col-lg-7 col-md-8 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                <article class="blog position-relative overflow-hidden shadow rounded">
+                    <div class="content p-4">
+                        <div class="markdown-content">
+                            {{ post.contenuP1|safe }}
+                            {% if post.contenuP2 %}{{ post.contenuP2|safe }}{% endif %}
+                            {% if post.contenuP3 %}{{ post.contenuP3|md|safe }}{% endif %}
+                            {% if post.contenuP4 %}{{ post.contenuP4|md|safe }}{% endif %}
                         </div>
 
-                        <div class="mt-4 pt-2 comment-area ">
-                            <div class="p-4 shadow rounded">
-                                <h5 class="page-title pb-3">Commentaires :</h5>
-                                <ul class="media-list list-unstyled mb-0">
-                                    {% for commentaire in commentaires %}
-                                    <li class="media mt-4">
-                                        <a class="float-left pr-3 mt-2" href="#">
-                                            <img class="img-fluid d-block mx-auto img-thumbnail rounded-circle" src="images/client/01.jpg" alt="img">
-                                        </a>
+                        {% if post.contenuSitation %}
+                        <blockquote class="blockquote mt-4 mb-4 bg-light p-4 rounded border-left">
+                            <p class="mb-0 font-italic">" {{ post.contenuSitation }} "</p>
+                        </blockquote>
+                        {% endif %}
 
-                                        <div class="media-body">
-                                            <h6 class="media-heading mb-0"><a href="javascript:void(0)" class="text-dark">{{ commentaire.visiteur.nom }}</a></h6>
-                                            <small class="text-muted">{{ commentaire.date }}</small>
-                                            <p class="mt-2 bg-light font-italic media-para text-muted rounded pt-3 pb-3 pl-4 pr-3 mb-0">
-                                                {{ commentaire.contenu }}</p>
-                                        </div>
-                                    </li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
+                        <div class="markdown-content">
+                            {{ post.contenuConclusion|md|safe }}
                         </div>
 
-                        <div class="mt-4 pt-2">
-                            <div class="p-4 shadow rounded">
-                                <h5 class="page-title pb-3">Laisser un Commentaire :</h5>
-                                <form>
-                                    {% csrf_token %}
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <textarea id="message" placeholder="Votre commentaire" rows="5" name="contenu" class="form-control border rounded" required=""></textarea>
-                                            </div>
-                                        </div><!--end col-->
-
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <input id="name" name="nom" type="text" placeholder="Name" class="form-control border rounded" required="">
-                                            </div>
-                                        </div><!--end col-->
-
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <input id="email" type="email" placeholder="Email" name="email" class="form-control border rounded" required="">
-                                            </div>
-                                        </div><!--end col-->
-
-                                        <div class="col-md-12">
-                                            <div class="send">
-                                            <button type="submit" class="btn btn-primary rounded">Envoyer</button>
-                                            </div>
-                                        </div><!--end col-->
-                                    </div><!--end row-->
-                                </form><!--end form-->
+                        <!-- Social Share -->
+                        <div class="post-meta border-top pt-3 mt-3">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="post-interactions">
+                                    <button class="btn btn-link text-muted like-btn" data-post-id="{{ post.id }}">
+                                        <i class="mdi mdi-heart-outline mr-1"></i><span class="like-count">33</span>
+                                    </button>
+                                    <a href="#comments" class="btn btn-link text-muted">
+                                        <i class="mdi mdi-comment-outline mr-1"></i>{{ commentaires.count }}
+                                    </a>
+                                </div>
+                                <div class="social-share">
+                                    <span class="mr-2">Partager :</span>
+                                    <a href="#" class="btn btn-icon btn-sm btn-primary mr-1 share-btn" data-platform="facebook"><i class="mdi mdi-facebook"></i></a>
+                                    <a href="#" class="btn btn-icon btn-sm btn-info mr-1 share-btn" data-platform="twitter"><i class="mdi mdi-twitter"></i></a>
+                                    <a href="#" class="btn btn-icon btn-sm btn-danger mr-1 share-btn" data-platform="pinterest"><i class="mdi mdi-pinterest"></i></a>
+                                    <a href="#" class="btn btn-icon btn-sm btn-dark share-btn" data-platform="linkedin"><i class="mdi mdi-linkedin"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <!-- BLog End -->
-                </div><!--end row-->
-            </div><!--end container-->
+                </article>
 
-            <div class="container mt-100 mt-60">
-                <div class="row justify-content-center">
-                    <div class="col-12 text-center">
-                        <div class="section-title">
-                            <div class="titles">
-                                <h4 class="title title-line text-uppercase mb-4 pb-4">Posts Similaires</h4>
-                                <span></span>
-                            </div>
-                            <p class="text-muted mx-auto para-desc mb-0">Posts relatifs à ce dernier.</p>
+                <!-- Comments Section -->
+                <div class="mt-4 pt-2 comment-area ">
+                    <div class="p-4 shadow rounded">
+                        <h5 class="page-title pb-3">Commentaires :</h5>
+                        <ul class="media-list list-unstyled mb-0">
+                            {% for commentaire in commentaires %}
+                            <li class="media mt-4">
+                                <a class="float-left pr-3 mt-2" href="#">
+                                    <img class="img-fluid d-block mx-auto img-thumbnail rounded-circle" src="{% static 'images/client/c.png' %}" alt="img">
+                                </a>
+
+                                <div class="media-body">
+                                    <h6 class="media-heading mb-0"><a href="javascript:void(0)" class="text-dark">{{ commentaire.visiteur.nom }}</a></h6>
+                                    <small class="text-muted">{{ commentaire.date }}</small>
+                                    <p class="mt-2 bg-light font-italic media-para text-muted rounded pt-3 pb-3 pl-4 pr-3 mb-0">
+                                        {{ commentaire.contenu }}</p>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Comment Form -->
+                <div class="mt-5">
+                    <div class="p-4 shadow rounded">
+                        <h4 class="mb-4">Laisser un commentaire</h4>
+                        <form method="post" action="{% url 'comment' post.id %}">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <textarea id="message" placeholder="Votre commentaire" rows="5" name="contenu" class="form-control border rounded" required=""></textarea>
+                                    </div>
+                                </div><!--end col-->
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input id="name" name="nom" type="text" placeholder="Name" class="form-control border rounded" required="">
+                                    </div>
+                                </div><!--end col-->
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input id="email" type="email" placeholder="Email" name="email" class="form-control border rounded" required="">
+                                    </div>
+                                </div><!--end col-->
+
+                                <div class="col-md-12">
+                                    <div class="send">
+                                    <button type="submit" class="btn btn-primary rounded">Envoyer</button>
+                                    </div>
+                                </div><!--end col-->
+                            </div><!--end row-->
+                        </form><!--end form-->
+                    </div>
+               
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Similar Posts -->
+<section class="section bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <h3 class="mb-4">Posts Similaires</h3>
+            </div>
+        </div>
+        <div class="row">
+            {% for post in posts %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card blog-post border-0 shadow rounded">
+                    {% if post.photo500_x_800 %}
+                    <img src="{{ post.photo500_x_800.url }}" class="card-img-top" alt="{{ post.titre }}">
+                    {% endif %}
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="badge badge-primary">{{ post.categorie }}</span>
+                            <small class="text-muted">{{ post.date|date:"d M Y" }}</small>
                         </div>
-                    </div><!--end col-->
-                </div><!--end row-->
+                        <h5 class="card-title">
+                            <a href="{% url 'post' post.id %}" class="text-dark">{{ post.titre|truncatechars:50 }}</a>
+                        </h5>
+                        <div class="mt-3">
+                            <a href="{% url 'post' post.id %}" class="text-primary">Lire la suite <i class="mdi mdi-chevron-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script>
+        // Attendez que le DOM soit chargé
+document.addEventListener('DOMContentLoaded', function() {
+    
 
-                <div class="row">
-                    {% for post in posts %}
-                    <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-                        <div class="blog-post rounded shadow">
-                            {% if post.photo500_x_800 %}
-                              <img src="{{ post.photo500_x_800.url }}" class="img-fluid rounded-top" alt="{{ post.titre }}">
-                            {% endif %}
-                            <div class="content pt-4 pb-4 p-3">
-                                <ul class="list-unstyled d-flex justify-content-between post-meta">
-                                    <li><i data-feather="user" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">{{ post.auteur }}</a></li> 
-                                    <li><i data-feather="tag" class="fea icon-sm mr-1"></i><a href="javascript:void(0)" class="text-dark">{{ post.categorie }}</a></li>                                    
-                                </ul>  
-                                <h5 class="mb-3"><a href="{% url 'post' post.id %}" class="title text-dark">{{ post.titre | slice:"0:50" }} ...</a></h5> 
-                                <ul class="list-unstyled mb-0 pt-3 border-top d-flex justify-content-between">
-                                    <li><a href="javascript:void(0)" class="text-dark">Voir plus <i data-feather="chevron-right" class="fea icon-sm"></i></a></li>
-                                    <li><i class="mdi mdi-calendar-edit mr-1"></i>{{post.date}}</li>
-                                </ul>
-                            </div><!--end content-->
-                        </div><!--end blog post-->
-                    </div><!--end col-->
-                    {% endfor %}
-                </div><!--end row-->
-            </div><!--end container-->
-        </section>
-        <!-- Blog -->
+    // Gestion du partage social
+    const shareButtons = document.querySelectorAll('.share-btn');
+    shareButtons.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const platform = this.dataset.platform;
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent(document.title);
+            
+            let shareUrl;
+            switch(platform) {
+                case 'facebook':
+                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+                    break;
+                case 'twitter':
+                    shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
+                    break;
+                case 'pinterest':
+                    const image = document.querySelector('.blog-post img');
+                    const imageUrl = image ? encodeURIComponent(image.src) : '';
+                    shareUrl = `https://pinterest.com/pin/create/button/?url=${url}&media=${imageUrl}&description=${title}`;
+                    break;
+                case 'linkedin':
+                    shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}`;
+                    break;
+            }
+            
+            window.open(shareUrl, '_blank', 'width=600,height=400');
+        });
+    });
+
+
+    // Sticky sidebar avec intersection observer
+    const sidebar = document.querySelector('.sticky-sidebar');
+    if (sidebar) {
+        let observer = new IntersectionObserver(
+            ([e]) => {
+                if (e.intersectionRatio < 1) {
+                    sidebar.classList.add('is-sticky');
+                } else {
+                    sidebar.classList.remove('is-sticky');
+                }
+            },
+            { threshold: [1] }
+        );
+
+        observer.observe(sidebar);
+    }
+
+    // Lazy loading pour les images
+    const images = document.querySelectorAll('img[data-src]');
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.removeAttribute('data-src');
+                imageObserver.unobserve(img);
+            }
+        });
+    });
+
+    images.forEach(img => imageObserver.observe(img));
+
+    // Smooth scroll pour les ancres
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Fonctions utilitaires
+    function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    function showNotification(message, type = 'info') {
+        const notification = document.createElement('div');
+        notification.className = `notification notification-${type}`;
+        notification.textContent = message;
+        document.body.appendChild(notification);
+
+        // Effet de fade in
+        setTimeout(() => notification.classList.add('show'), 100);
+
+        // Suppression automatique après 3 secondes
+        setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
+});
+
+// Style CSS pour les notifications
+const style = document.createElement('style');
+style.textContent = `
+    .notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 15px 25px;
+        border-radius: 4px;
+        color: white;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 1000;
+    }
+    
+    .notification.show {
+        opacity: 1;
+    }
+    
+    .notification-success {
+        background-color: #28a745;
+    }
+    
+    .notification-error {
+        background-color: #dc3545;
+    }
+    
+    .notification-info {
+        background-color: #17a2b8;
+    }
+    
+    .sticky-sidebar.is-sticky {
+        position: sticky;
+        top: 20px;
+    }
+`;
+document.head.appendChild(style);
+    </script>
+</section>
 {% endblock %}
