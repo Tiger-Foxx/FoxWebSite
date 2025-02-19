@@ -11,7 +11,7 @@
 {# Open Graph Meta Tags pour le partage social #}
 <meta property="og:title" content="Fox : {{ projet.nom }}" />
 <meta property="og:description" content="{{ projet.description|striptags|truncatechars:160 }}" />
-<meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ post.photo500_x_800.url }}" />
+<meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ projet.photo1_800_x_550.url }}" />
 <meta property="og:url" content="{{ request.build_absolute_uri }}" />
 <meta property="og:type" content="article" />
 <meta property="og:site_name" content="Fox Blog" />
@@ -22,7 +22,7 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Fox : {{ projet.nom }}" />
 <meta name="twitter:description" content="{{ projet.description|striptags|truncatechars:160 }}" />
-<meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{{ post.photo500_x_800.url }}" />
+<meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{{ projet.photo1_800_x_550.url }}" />
 
 {# Schema.org Markup pour les Rich Snippets #}
 <script type="application/ld+json">
