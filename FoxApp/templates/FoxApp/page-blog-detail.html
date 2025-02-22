@@ -100,7 +100,7 @@
             <!-- Content Column -->
             <div class="col-lg-7 col-md-8 mt-4 mt-sm-0 pt-2 pt-sm-0">
                 <article class="blog position-relative overflow-hidden shadow rounded">
-                    <div class="content p-4">
+                    <div class="content">
                         <div class="markdown-content">
                             {{ post.contenuP1|safe }}
                             {% if post.contenuP2 %}{{ post.contenuP2|safe }}{% endif %}
@@ -385,4 +385,6 @@ style.textContent = `
 document.head.appendChild(style);
     </script>
 </section>
+
+
 {% endblock %}
