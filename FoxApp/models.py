@@ -102,6 +102,7 @@ class Newsletter(models.Model):
     conclusion = models.TextField()
     image_url = models.URLField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    article_url = models.URLField(blank=True, null=True)
 
     def __str__(self):
         return self.title

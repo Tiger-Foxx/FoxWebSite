@@ -1,52 +1,113 @@
-{# templates/FoxApp/newsletter-form.html #}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer une nouvelle Newsletter Fox</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #2d2d2d;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+        h2 {
+            font-size: 2rem;
+            color: #00ffff;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-size: 1rem;
+            color: #00ffff;
+            margin-bottom: 8px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: #333333;
+            border: 1px solid #00ffff;
+            border-radius: 5px;
+            color: #ffffff;
+            font-size: 1rem;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #00ffff;
+            box-shadow: 0 0 5px #00ffff;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #00ffff;
+            color: #1a1a1a;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #00cccc;
+        }
+    </style>
+</head>
+<body>
 
-<div class="max-w-4xl mx-auto p-6 bg-gray-900 rounded-lg shadow-xl">
-    <h2 class="text-3xl font-bold mb-6 text-aqua">Créer une nouvelle Newsletter Fox</h2>
+<div class="container">
+    <h2>Créer une nouvelle Newsletter Fox</h2>
 
-    <form method="post" class="space-y-6">
+    <form method="post">
         {% csrf_token %}
 
-        <div class="space-y-4">
-            <div>
-                <label for="title" class="block text-aqua font-medium mb-2">Titre Principal</label>
-                <input type="text" id="title" name="title" required
-                       class="w-full p-3 bg-gray-800 border border-aqua rounded-lg text-white focus:ring-2 focus:ring-aqua">
-            </div>
-
-            <div>
-                <label for="subtitle" class="block text-aqua font-medium mb-2">Sous-titre (optionnel)</label>
-                <input type="text" id="subtitle" name="subtitle"
-                       class="w-full p-3 bg-gray-800 border border-aqua rounded-lg text-white focus:ring-2 focus:ring-aqua">
-            </div>
-
-            <div>
-                <label for="main_content" class="block text-aqua font-medium mb-2">Contenu Principal</label>
-                <textarea id="main_content" name="main_content" rows="6" required
-                          class="w-full p-3 bg-gray-800 border border-aqua rounded-lg text-white focus:ring-2 focus:ring-aqua"></textarea>
-            </div>
-
-            <div>
-                <label for="quote" class="block text-aqua font-medium mb-2">Citation Inspirante (optionnel)</label>
-                <textarea id="quote" name="quote" rows="3"
-                          class="w-full p-3 bg-gray-800 border border-aqua rounded-lg text-white focus:ring-2 focus:ring-aqua"></textarea>
-            </div>
-
-            <div>
-                <label for="conclusion" class="block text-aqua font-medium mb-2">Conclusion</label>
-                <textarea id="conclusion" name="conclusion" rows="4" required
-                          class="w-full p-3 bg-gray-800 border border-aqua rounded-lg text-white focus:ring-2 focus:ring-aqua"></textarea>
-            </div>
-
-            <div>
-                <label for="image_url" class="block text-aqua font-medium mb-2">URL de l'image (optionnel)</label>
-                <input type="url" id="image_url" name="image_url"
-                       class="w-full p-3 bg-gray-800 border border-aqua rounded-lg text-white focus:ring-2 focus:ring-aqua">
-            </div>
+        <div>
+            <label for="title">Titre Principal</label>
+            <input type="text" id="title" name="title" required>
         </div>
 
-        <button type="submit"
-                class="w-full py-3 px-6 bg-aqua text-gray-900 font-bold rounded-lg hover:bg-opacity-90 transition-colors">
-            Envoyer la Newsletter 🦊
-        </button>
+        <div>
+            <label for="subtitle">Sous-titre (optionnel)</label>
+            <input type="text" id="subtitle" name="subtitle">
+        </div>
+
+        <div>
+            <label for="main_content">Contenu Principal</label>
+            <textarea id="main_content" name="main_content" rows="6" required></textarea>
+        </div>
+
+        <div>
+            <label for="quote">Citation Inspirante (optionnel)</label>
+            <textarea id="quote" name="quote" rows="3"></textarea>
+        </div>
+
+        <div>
+            <label for="conclusion">Conclusion</label>
+            <textarea id="conclusion" name="conclusion" rows="4" required></textarea>
+        </div>
+
+        <div>
+            <label for="image_url">URL de l'image (optionnel)</label>
+            <input type="url" id="image_url" name="image_url">
+        </div>
+
+        <div>
+            <label for="article_url">URL de l'article (optionnel)</label>
+            <input type="url" id="article_url" name="article_url">
+        </div>
+
+        <button type="submit">Envoyer la Newsletter 🦊</button>
     </form>
 </div>
+
+</body>
+</html>

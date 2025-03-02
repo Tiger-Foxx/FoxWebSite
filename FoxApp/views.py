@@ -242,7 +242,8 @@ def send_newsletter(request):
             main_content=request.POST.get('main_content'),
             quote=request.POST.get('quote'),
             conclusion=request.POST.get('conclusion'),
-            image_url=request.POST.get('image_url')
+            image_url=request.POST.get('image_url'),
+            article_url=request.POST.get('article_url')
         )
 
         # Contexte pour le template

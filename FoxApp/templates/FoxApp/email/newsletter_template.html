@@ -27,9 +27,16 @@
                                 {{ newsletter.subtitle }}
                             </h2>
                             {% endif %}
-                            <a href="https://theoldfox.pythonanywhere.com" style="display: inline-block; background-color: #7FFFD4; color: #000000; padding: 12px 30px; border-radius: 25px; text-decoration: none; font-weight: bold; transition: all 0.3s ease; margin-top: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                                Découvrir notre site
+                            {% if newsletter.article_url %}
+                            <a href="{{ newsletter.article_url }}" style="display: inline-block; background-color: #7FFFD4; color: #000000; padding: 12px 30px; border-radius: 25px; text-decoration: none; font-weight: bold; transition: all 0.3s ease; margin-top: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                                Voir l'article sur le site
                             </a>
+                            {% else %}
+                            <a href="https://theoldfox.pythonanywhere.com/" style="display: inline-block; background-color: #7FFFD4; color: #000000; padding: 12px 30px; border-radius: 25px; text-decoration: none; font-weight: bold; transition: all 0.3s ease; margin-top: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                                Voir l'article sur le site
+                            </a>
+                            {% endif %}
+                            
                         </td>
                     </tr>
                 </table>
