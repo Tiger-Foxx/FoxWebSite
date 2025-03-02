@@ -10,6 +10,9 @@ from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.conf import settings
 from .models import Visiteur, Annonce
+from django.shortcuts import redirect
+from django.core.validators import validate_email
+from django.core.exceptions import ValidationError
 
 # Create your views here.
 
@@ -83,17 +86,35 @@ def projet(request,id):
     })
 
 def subscribe(request):
-    email=request.POST.get('email')
-    try :
-        visiteur=Visiteur.objects.create(email=email)
-        visiteur.save()
-        message=f'Merci ! {email} Vous recevrez nos nouvelles par email ! '
-        envoyer_email(message='Merci de votre visite  ! vous recevrez toutes les dernières NEWS Tech de FOX , BISOU',email=email,sujet='BIENVENUE CHEZ FOX !!!')
-        envoyer_email(message="Un Nouveau souscrivant a votre Newsletter , il s'agit de : "+email,email="donfackarthur750@gmail.com",sujet='NOUVEAU SOUSCRIVANT NEWSLETTER : '+email)
+    if request.method == 'POST':
+        email = request.POST.get('email')
 
-    except:
-        message=f'Merci ! {email} mais vous recevez dejà nos nouvelles par email ! '
-    return redirect('success',message=message)
+        # Validation de l'adresse e-mail
+        try:
+            validate_email(email)
+        except ValidationError:
+            message = f"L'adresse e-mail '{email}' n'est pas valide."
+            return redirect('success', message=message)
+
+        # Vérification de l'existence du visiteur
+        if Visiteur.objects.filter(email=email).exists():
+            message = f"Merci ! {email} Vous recevez déjà nos nouvelles par e-mail !"
+        else:
+            # Création et enregistrement du visiteur
+            visiteur = Visiteur.objects.create(email=email)
+            visiteur.save()
+            message = f"Merci ! {email} Vous recevrez nos nouvelles par e-mail !"
+
+            # Envoi des e-mails
+            envoyer_email(message='Merci de votre visite ! Vous recevrez toutes les dernières NEWS Tech de FOX, BISOU',
+                          email=email, sujet='BIENVENUE CHEZ FOX !!!')
+            envoyer_email(message="Un nouveau souscrivant à votre Newsletter, il s'agit de : " + email,
+                          email="donfackarthur750@gmail.com", sujet='NOUVEAU SOUSCRIVANT NEWSLETTER : ' + email)
+
+        return redirect('success', message=message)
+    else:
+        # Gérer le cas où la requête n'est pas une requête POST
+        return redirect('home')  # Rediriger vers la page d'accueil ou une autre page appropriée
 
 def success(request, message='MERCI POUR VOTRE COOPERATION !'):
     template='FoxApp/page-success.html'
