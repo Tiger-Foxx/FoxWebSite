@@ -266,11 +266,12 @@ def send_newsletter(request):
             image_url=request.POST.get('image_url'),
             article_url=request.POST.get('article_url')
         )
-
+        profile=Profile.objects.all()[0]
         # Contexte pour le template
         context = {
             'newsletter': newsletter,
             'year': datetime.now().year,
+            'profile': profile,
         }
 
         # Génération du contenu HTML

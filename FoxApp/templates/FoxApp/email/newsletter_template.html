@@ -1,93 +1,364 @@
 {# templates/FoxApp/email/newsletter_template.html #}
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ newsletter.title }}</title>
+    <!--[if mso]>
+    <style type="text/css">
+        body, table, td, p, a, li, blockquote {font-family: Arial, Helvetica, sans-serif !important;}
+    </style>
+    <![endif]-->
 </head>
-<body style="margin: 0; padding: 20px; background-color: #1a1a1a; font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%;">
-    <table role="presentation" cellpadding="0" cellspacing="0" style="width: 100%; max-width: 600px; margin: 0 auto;">
+<body style="margin: 0; padding: 0; font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; background-color: #0F172A; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;">
+    <!-- Wrapper principal pour l'alignement et la largeur max -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width: 100%; background-color: #0F172A;">
         <tr>
-            <td style="background-color: #ffffff; border-radius: 15px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); padding: 0; overflow: hidden;">
-                <!-- En-tête avec image de fond -->
-                <table role="presentation" cellpadding="0" cellspacing="0" style="width: 100%;">
+            <td align="center" valign="top" style="padding: 30px 15px;">
+                <!-- Conteneur principal -->
+                <table border="0" cellpadding="0" cellspacing="0" width="600" style="max-width: 600px; background-color: #0F172A; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);">
+                    <!-- Logo et en-tête -->
                     <tr>
-                        <td style="position: relative; background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(142,142,142,0.8) 100%); padding: 40px 30px; text-align: center; border-radius: 0;">
+                        <td align="center" style="padding: 36px 0 25px; background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);">
+                            <!-- Logo Fox -->
+                            <table border="0" cellpadding="0" cellspacing="0" width="90%">
+                                <tr>
+                                    <td align="center">
+                                        <table border="0" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                                <td align="center" style="padding-bottom: 20px;">
+                                                    <!-- Logo Image -->
+                                                    <div style="display: inline-block; text-align: center;">
+                                                        <img src="https://theoldfox.pythonanywhere.com//static/images/logo-fox-light.png" alt="Logo" style="max-width: 100px; height: auto; display: block; margin: 0 auto;">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="center" style="padding-bottom: 15px;">
+                                                    <h1 style="margin: 0; color: #FFFFFF; font-size: 28px; font-weight: 800; letter-spacing: -0.5px;">The<span style="color: #7FFFD4;">Fox</span></h1>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="center">
+                                                    <p style="margin: 0; color: #94A3B8; font-size: 16px; font-weight: 400;">Computer Engineering Scientist</p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Bannière principale avec image et overlay -->
+                    <tr>
+                        <td style="position: relative;">
                             {% if newsletter.image_url %}
-                            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: -1;">
-                                <img src="{{ newsletter.image_url }}" alt="Header background"
-                                     style="width: 100%; height: 100%; object-fit: cover; opacity: 0.6;">
+                            <div style="position: relative; width: 100%; height: 300px; overflow: hidden;">
+                                <img src="{{ newsletter.image_url }}" alt="Header background" style="width: 100%; min-height: 300px; object-fit: cover;" />
+                                <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(0deg, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.7) 100%); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 30px;">
+                                    <!-- Contenu titre sur image -->
+                                    <table border="0" cellpadding="0" cellspacing="0" width="90%">
+                                        <tr>
+                                            <td align="center">
+                                                <h2 style="margin: 0; color: #FFFFFF; font-size: 36px; font-weight: 800; letter-spacing: -0.5px; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); line-height: 1.2; text-align: center;">{{ newsletter.title }}</h2>
+                                                {% if newsletter.subtitle %}
+                                                <p style="color: #CBD5E1; margin: 15px 0 25px; font-size: 20px; font-weight: 400; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); line-height: 1.4; text-align: center;">{{ newsletter.subtitle }}</p>
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
                             </div>
-                            {% endif %}
-                            <h1 style="color: white; margin: 0; font-size: 32px; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
-                                {{ newsletter.title }}
-                            </h1>
-                            {% if newsletter.subtitle %}
-                            <h2 style="color: white; margin: 15px 0 25px 0; font-size: 22px; font-weight: normal; text-shadow: 1px 1px 3px rgba(0,0,0,0.5);">
-                                {{ newsletter.subtitle }}
-                            </h2>
-                            {% endif %}
-                            {% if newsletter.article_url %}
-                            <a href="{{ newsletter.article_url }}" style="display: inline-block; background-color: #7FFFD4; color: #000000; padding: 12px 30px; border-radius: 25px; text-decoration: none; font-weight: bold; transition: all 0.3s ease; margin-top: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                                Voir l'article sur le site
-                            </a>
                             {% else %}
-                            <a href="https://theoldfox.pythonanywhere.com/" style="display: inline-block; background-color: #7FFFD4; color: #000000; padding: 12px 30px; border-radius: 25px; text-decoration: none; font-weight: bold; transition: all 0.3s ease; margin-top: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                                Voir l'article sur le site
-                            </a>
-                            {% endif %}
-                            
-                        </td>
-                    </tr>
-                </table>
-
-                <!-- Contenu principal -->
-                <table role="presentation" cellpadding="0" cellspacing="0" style="width: 100%;">
-                    <tr>
-                        <td style="padding: 40px 30px;">
-                            <div style="color: #333333; font-size: 16px; line-height: 1.8; text-align: left;">
-                                {{ newsletter.main_content|linebreaks }}
-                            </div>
-
-                            {% if newsletter.quote %}
-                            <div style="margin: 35px 0; padding: 25px; border-left: 4px solid #7FFFD4; background-color: rgba(127, 255, 212, 0.1); font-style: italic; color: #2a2a2a; border-radius: 0 8px 8px 0;">
-                                {{ newsletter.quote }}
+                            <!-- Version sans image -->
+                            <div style="background: linear-gradient(135deg, #1E293B 0%, #334155 100%); padding: 50px 20px; text-align: center;">
+                                <table border="0" cellpadding="0" cellspacing="0" width="90%" style="margin: 0 auto;">
+                                    <tr>
+                                        <td align="center">
+                                            <h2 style="margin: 0; color: #FFFFFF; font-size: 36px; font-weight: 800; letter-spacing: -0.5px; line-height: 1.2;">{{ newsletter.title }}</h2>
+                                            {% if newsletter.subtitle %}
+                                            <p style="color: #CBD5E1; margin: 15px 0 0; font-size: 20px; font-weight: 400; line-height: 1.4;">{{ newsletter.subtitle }}</p>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                </table>
                             </div>
                             {% endif %}
-
-                            <div style="color: #333333; font-size: 16px; line-height: 1.8;">
-                                {{ newsletter.conclusion|linebreaks }}
-                            </div>
                         </td>
                     </tr>
-                </table>
 
-                <!-- Pied de page -->
-                <table role="presentation" cellpadding="0" cellspacing="0" style="width: 100%; background-color: #f8f8f8;">
+                    <!-- Barre avec date et tags -->
                     <tr>
-                        <td style="padding: 35px 30px; text-align: center; border-top: 3px solid #7FFFD4;">
-                            <!-- Réseaux sociaux -->
-                            <p style="margin: 0 0 20px 0; color: #666666; font-size: 16px; font-weight: bold;">
-                                Suivez Fox sur les réseaux 🦊
-                            </p>
-                            <div style="margin-bottom: 25px;">
-                                <a href="#" style="display: inline-block; margin: 0 12px; color: #333333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Twitter</a>
-                                <a href="#" style="display: inline-block; margin: 0 12px; color: #333333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Instagram</a>
-                                <a href="#" style="display: inline-block; margin: 0 12px; color: #333333; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">LinkedIn</a>
-                            </div>
+                        <td style="background-color: #1E293B; padding: 15px 30px; border-bottom: 1px solid #334155;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td style="color: #94A3B8; font-size: 14px; font-weight: 500;">
+                                        <span style="display: inline-block; margin-right: 10px;">📅 {{ newsletter.created_at|date:"d M Y" }}</span>
+                                        <span style="display: inline-block; background-color: rgba(127, 255, 212, 0.15); color: #7FFFD4; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;">#devskills</span>
+                                        <span style="display: inline-block; background-color: rgba(127, 255, 212, 0.15); color: #7FFFD4; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;">#Engineerkills</span>
 
-                            <!-- Copyright et désabonnement -->
-                            <p style="margin: 0 0 10px 0; color: #666666; font-size: 14px;">
-                                © {{ year }} Fox Newsletter - Tous droits réservés
-                            </p>
-                            <p style="margin: 0; color: #666666; font-size: 13px;">
-                                Vous recevez cet email car vous êtes inscrit à notre newsletter.
-                                <br>
-                                <a href="#" style="color: #7FFFD4; text-decoration: none; margin-top: 8px; display: inline-block;">Gérer mes préférences d'email</a>
-                            </p>
+                                        <span style="display: inline-block; background-color: rgba(127, 255, 212, 0.15); color: #7FFFD4; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;">#hackingkills</span>
+
+                                    </td>
+                                    <td align="right">
+                                        <table border="0" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                                <!-- GitHub -->
+                                                <td>
+                                                    <a href="{{profile.github}}" style="display: inline-block; margin-left: 13px; color: #94A3B8; text-decoration: none;">
+                                                        <span style="display: inline-block; width: 24px; height: 24px; text-align: center; line-height: 24px; background-color: transparent; border-radius: 50%;">
+                                                            <img src="https://cdn.iconscout.com/icon/free/png-256/free-github-logo-icon-download-in-svg-png-gif-file-formats--70-flat-social-icons-color-pack-logos-432516.png" alt="GitHub" style="width: 23px; height: 23px; vertical-align: middle; filter: invert(1);">
+                                                        </span>
+                                                    </a>
+                                                </td>
+                                                <!-- Gmail -->
+                                                <td>
+                                                    <a href="{{profile.gmail}}" style="display: inline-block; margin-left: 13px; color: #94A3B8; text-decoration: none;">
+                                                        <span style="display: inline-block; width: 24px; height: 24px; text-align: center; line-height: 24px; background-color: transparent; border-radius: 50%;">
+                                                            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968534.png" alt="Gmail" style="width: 23px; height: 23px; vertical-align: middle; filter: invert(1);">
+                                                        </span>
+                                                    </a>
+                                                </td>
+                                                <!-- Instagram -->
+                                                <td>
+                                                    <a href="{{profile.instagram}}" style="display: inline-block; margin-left: 13px; color: #94A3B8; text-decoration: none;">
+                                                        <span style="display: inline-block; width: 24px; height: 24px; text-align: center; line-height: 24px; background-color: transparent; border-radius: 50%;">
+                                                            <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram" style="width: 23px; height: 23px; vertical-align: middle; filter: invert(1);">
+                                                        </span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Contenu principal avec fond blanc -->
+                    <tr>
+                        <td style="background-color: #FFFFFF; padding: 0;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td style="padding: 40px 30px;">
+                                        <!-- Intro avec ligne décorative -->
+                                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                            <tr>
+                                                <td>
+                                                    <div style="width: 50px; height: 5px; background: linear-gradient(90deg, #7FFFD4 0%, #64C9A8 100%); border-radius: 10px; margin-bottom: 25px;"></div>
+                                                    
+                                                    <div style="color: #334155; font-size: 17px; line-height: 1.8; margin-bottom: 25px;">
+                                                        {{ newsletter.main_content|linebreaks }}
+                                                    </div>
+
+                                                    {% if newsletter.quote %}
+                                                    <div style="margin: 35px 0; padding: 25px; border-radius: 10px; background-color: #F1F5F9; position: relative;">
+                                                        <div style="position: absolute; top: -15px; left: 25px; color: #7FFFD4; font-size: 40px; font-family: Georgia, serif; line-height: 1;">"</div>
+                                                        <p style="margin: 0; color: #334155; font-size: 17px; line-height: 1.7; font-style: italic; padding: 5px 0 5px 20px; border-left: 3px solid #7FFFD4;">
+                                                            {{ newsletter.quote }}
+                                                        </p>
+                                                    </div>
+                                                    {% endif %}
+
+                                                    <!-- Points clés en bullets avec icônes -->
+                                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin: 30px 0;">
+                                                        <tr>
+                                                            <td style="padding: 15px; background-color: #F8FAFC; border-radius: 10px;">
+                                                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                                    <tr>
+                                                                        <td width="24" valign="top" style="padding-right: 15px;">
+                                                                            <div style="width: 24px; height: 24px; background-color: #7FFFD4; border-radius: 50%; color: #0F172A; font-size: 14px; font-weight: bold; text-align: center; line-height: 24px;">1</div>
+                                                                        </td>
+                                                                        <td style="color: #334155; font-size: 16px; font-weight: 500;">Suivez les nouvelles sur le site pour une expérience optimale</td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="10"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="padding: 15px; background-color: #F8FAFC; border-radius: 10px;">
+                                                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                                    <tr>
+                                                                        <td width="24" valign="top" style="padding-right: 15px;">
+                                                                            <div style="width: 24px; height: 24px; background-color: #7FFFD4; border-radius: 50%; color: #0F172A; font-size: 14px; font-weight: bold; text-align: center; line-height: 24px;">2</div>
+                                                                        </td>
+                                                                        <td style="color: #334155; font-size: 16px; font-weight: 500;">Partagez vos réalisations avec la communauté Fox</td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+
+                                                    <div style="color: #334155; font-size: 17px; line-height: 1.8; margin-bottom: 30px;">
+                                                        {{ newsletter.conclusion|linebreaks }}
+                                                    </div>
+
+                                                    <!-- CTA Button -->
+                                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                        <tr>
+                                                            <td align="center" style="padding: 10px 0 30px;">
+                                                                <table border="0" cellpadding="0" cellspacing="0">
+                                                                    <tr>
+                                                                        <td align="center" style="border-radius: 30px; background: linear-gradient(90deg, #7FFFD4 0%, #64C9A8 100%); box-shadow: 0 4px 10px rgba(127, 255, 212, 0.3);">
+                                                                            {% if newsletter.article_url %}
+                                                                            <a href="{{ newsletter.article_url }}" style="border: none; border-radius: 30px; color: #0F172A; display: inline-block; font-size: 16px; font-weight: 600; padding: 16px 30px; text-decoration: none; letter-spacing: 0.3px;">Voir l'article complet</a>
+                                                                            {% else %}
+                                                                            <a href="https://theoldfox.pythonanywhere.com/" style="border: none; border-radius: 30px; color: #0F172A; display: inline-block; font-size: 16px; font-weight: 600; padding: 16px 30px; text-decoration: none; letter-spacing: 0.3px;">Visiter le site</a>
+                                                                            {% endif %}
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Bloc de code (décoratif) -->
+                    <tr>
+                        <td style="background-color: #1E293B; padding: 20px 30px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td>
+                                        <div style="background-color: #0F172A; border-radius: 10px; padding: 15px; border: 1px solid #334155; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                                            <code style="font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 13px; color: #94A3B8; display: block; overflow-x: auto; white-space: pre-wrap; line-height: 1.5;">
+<span style="color: #7FFFD4;">function</span> <span style="color: #E2E8F0;">foxHack</span><span style="color: #94A3B8;">(</span><span style="color: #E2E8F0;">system</span><span style="color: #94A3B8;">)</span> <span style="color: #94A3B8;">{</span>
+  <span style="color: #E2E8F0;">console</span><span style="color: #94A3B8;">.</span><span style="color: #7FFFD4;">log</span><span style="color: #94A3B8;">(</span><span style="color: #F472B6;">'Starting ethical hack...'</span><span style="color: #94A3B8;">);</span>
+  <span style="color: #F472B6;">// Sharing knowledge with the Fox community</span>
+  <span style="color: #CBD5E1;">return</span> <span style="color: #E2E8F0;">success</span><span style="color: #94A3B8;">;</span>
+<span style="color: #94A3B8;">}</span>
+                                            </code>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Indicateur de compétences -->
+                    <tr>
+                        <td style="background-color: #1E293B; padding: 0 30px 30px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td align="center">
+                                        <p style="color: #94A3B8; font-size: 14px; margin: 0 0 15px;">The Fox</p>
+                                        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 400px;">
+                                            <tr>
+                                                <td align="right" width="30%" style="padding-right: 15px; color: #CBD5E1; font-size: 14px; font-weight: 500;">Hacking</td>
+                                                <td width="70%">
+                                                    <div style="background-color: #0F172A; height: 8px; border-radius: 4px; overflow: hidden;">
+                                                        <div style="background: linear-gradient(90deg, #7FFFD4 0%, #64C9A8 100%); width: 95%; height: 100%;"></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td height="8"></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="right" width="30%" style="padding-right: 15px; color: #CBD5E1; font-size: 14px; font-weight: 500;">Dev</td>
+                                                <td width="70%">
+                                                    <div style="background-color: #0F172A; height: 8px; border-radius: 4px; overflow: hidden;">
+                                                        <div style="background: linear-gradient(90deg, #7FFFD4 0%, #64C9A8 100%); width: 92%; height: 100%;"></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td height="8"></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="right" width="30%" style="padding-right: 15px; color: #CBD5E1; font-size: 14px; font-weight: 500;">Other things like network haha</td>
+                                                <td width="70%">
+                                                    <div style="background-color: #0F172A; height: 8px; border-radius: 4px; overflow: hidden;">
+                                                        <div style="background: linear-gradient(90deg, #7FFFD4 0%, #64C9A8 100%); width: 88%; height: 100%;"></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Pied de page avec séparateur -->
+                    <tr>
+                        <td style="padding: 0;">
+                            <div style="height: 5px; background: linear-gradient(90deg, #7FFFD4 0%, #64C9A8 100%);"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color: #0F172A; padding: 40px 30px; text-align: center;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td align="center">
+                                        <!-- Logo Fox simplifié -->
+                                        <div style="display: inline-block; margin-bottom: 20px;">
+                                            <table border="0" cellpadding="0" cellspacing="0">
+                                                <tr>
+                                                    <td align="center" valign="middle" style="width: 40px; height: 40px;">
+                                                        <!-- Logo Image -->
+                                                        <img src="https://theoldfox.pythonanywhere.com/static/images/home/hero.jpg" alt="Logo" style=" height: 40px; display: block;">
+                                                    </td>
+                                                    <td width="15"></td>
+                                                    <td align="center" valign="middle">
+                                                        <h3 style="margin: 0; color: #FFFFFF; font-size: 18px; font-weight: 700; letter-spacing: -0.3px;">The<span style="color: #7FFFD4;">Fox</span></h3>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center" style="padding: 20px 0;">
+                                        <table border="0" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                                <td>
+                                                    <a href="#" style="display: inline-block; margin: 0 10px; color: #CBD5E1; text-decoration: none; font-size: 14px; font-weight: 500;">Twitter</a>
+                                                </td>
+                                                <td style="color: #334155; font-size: 14px;">•</td>
+                                                <td>
+                                                    <a href="{{profile.linkedIn}}" style="display: inline-block; margin: 0 10px; color: #CBD5E1; text-decoration: none; font-size: 14px; font-weight: 500;">LinkedIn</a>
+                                                </td>
+                                                <td style="color: #334155; font-size: 14px;">•</td>
+                                                <td>
+                                                    <a href="{{profile.github}}" style="display: inline-block; margin: 0 10px; color: #CBD5E1; text-decoration: none; font-size: 14px; font-weight: 500;">GitHub</a>
+                                                </td>
+                                                <td style="color: #334155; font-size: 14px;">•</td>
+                                                <td>
+                                                    <a href="{{profile.instagram}}" style="display: inline-block; margin: 0 10px; color: #CBD5E1; text-decoration: none; font-size: 14px; font-weight: 500;">Instagram</a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center">
+                                        <p style="margin: 0 0 10px; color: #64748B; font-size: 14px;">
+                                            © {{ year }} Fox Newsletter - Tous droits réservés
+                                        </p>
+                                        <p style="margin: 0; color: #64748B; font-size: 13px;">
+                                            Vous recevez cet email car vous êtes inscrit à notre newsletter.
+                                            <br>
+                                            <a href="#" style="color: #7FFFD4; text-decoration: none; margin-top: 8px; display: inline-block; font-size: 13px;">Gérer mes préférences d'email</a>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
                         </td>
                     </tr>
                 </table>
+                <!-- Spacer de fin -->
+                <div style="height: 20px;"></div>
             </td>
         </tr>
     </table>
