@@ -4,13 +4,13 @@
 {% block title %}Fox : {{ post.titre }}{% endblock %}
 
 {% block meta %}
-<meta name="description" content="{{ post.description|striptags|truncatechars:260 }}" />
+<meta name="description" content="{{ post.description|striptags|truncatechars:360 }}" />
 <meta name="keywords" content="{{ post.categorie }}, Fox, blog, {{ post.titre|lower }}" />
 <meta name="author" content="The Fox" />
 
 {# Open Graph Meta Tags pour le partage social #}
 <meta property="og:title" content="Fox : {{ post.titre }}" />
-<meta property="og:description" content="{{ post.description|striptags|truncatechars:260 }}" />
+<meta property="og:description" content="{{ post.description|striptags|truncatechars:360 }}" />
 <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ post.photo500_x_800.url }}" />
 <meta property="og:url" content="{{ request.build_absolute_uri }}" />
 <meta property="og:type" content="article" />
@@ -21,7 +21,7 @@
 {# Twitter Card Tags #}
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Fox : {{ post.titre }}" />
-<meta name="twitter:description" content="{{ post.description|striptags|truncatechars:260 }}" />
+<meta name="twitter:description" content="{{ post.description|striptags|truncatechars:360 }}" />
 <meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{{ post.photo500_x_800.url }}" />
 
 {# Schema.org Markup pour les Rich Snippets #}
@@ -44,7 +44,7 @@
     }
   },
   "datePublished": "{{ post.date|date:'c' }}",
-  "description": "{{ post.description|striptags|truncatechars:260 }}",
+  "description": "{{ post.description|striptags|truncatechars:360 }}",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "{{ request.build_absolute_uri }}"
