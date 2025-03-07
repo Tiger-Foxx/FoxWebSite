@@ -4,7 +4,7 @@
 {% block title %}Fox : {{ post.titre }}{% endblock %}
 
 {% block meta %}
-<meta name="description" content="{{ post.contenuP1|striptags|truncatechars:160 }}" />
+<meta name="description" content="{{ post.description|striptags|truncatechars:260 }}" />
 <meta name="keywords" content="{{ post.categorie }}, Fox, blog, {{ post.titre|lower }}" />
 <meta name="author" content="The Fox" />
 
