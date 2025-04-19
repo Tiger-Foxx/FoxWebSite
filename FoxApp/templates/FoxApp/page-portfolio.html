@@ -30,17 +30,26 @@
             <div class="row justify-content-center">
                 <div class="col-lg-12">
                     <ul class="portfolioFilter text-center mb-0 list-unstyled">
-                        <li class="list-inline-item mb-3"><a href="#" data-filter="*" class="active text-dark mr-2 py-2 px-3 rounded">Tous</a></li>
-                        <li class="list-inline-item mb-3"><a href="#" data-filter=".dev" class="text-dark mr-2 py-2 px-3 rounded">Dev</a></li>
-                        <li class="list-inline-item mb-3"><a href="#" data-filter=".security" class="text-dark mr-2 py-2 px-3 rounded">Security</a></li>
-                        <li class="list-inline-item mb-3"><a href="#" data-filter=".achievement" class="text-dark mr-2 py-2 px-3 rounded">Achievement</a></li>
+                        <li class="list-inline-item mb-3">
+                            <a href="#" data-filter="*" class="active text-dark mr-2 py-2 px-3 rounded">All</a>
+                        </li>
+                        <li class="list-inline-item mb-3">
+                            <a href="#" data-filter=".dev" class="text-dark mr-2 py-2 px-3 rounded">Dev</a>
+                        </li>
+                        <li class="list-inline-item mb-3">
+                            <a href="#" data-filter=".security" class="text-dark mr-2 py-2 px-3 rounded">Security</a>
+                        </li>
+                        <li class="list-inline-item mb-3">
+                            <a href="#" data-filter=".achievement" class="text-dark mr-2 py-2 px-3 rounded">Achievement</a>
+                        </li>
+
                     </ul>
                 </div><!--end col-->
             </div><!--end row-->
 
             <div class="portfolioContainer row">
                 {% for projet in projets %}
-                <div class="col-lg-4 col-md-6 mt-4 pt-2 natural personal {{ projet.categorie}}">
+                	<div class="col-lg-4 col-md-6 mt-4 pt-2 {{ projet.categorie}}">
                     <div class="portfolio-box rounded shadow position-relative overflow-hidden">
                         <div class="portfolio-box-img position-relative overflow-hidden">
                             <img src="{{ projet.photo1_800_x_550.url }}" 
@@ -56,6 +65,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="gallary-title py-4 text-center">
                             <h5>
                                 {% if projet.demo %}
@@ -68,11 +78,18 @@
                             <span>{{ projet.sujet }}</span>
                         </div>
                     </div>
-                </div><!--end col-->
-            {% endfor %}
+                </div>
+                <!--end col-->
+                {% endfor %}
 
 
-            </div><!-- End row -->
+
+
+
+            </div>
+       
+       
+       
         </div><!--end container-->
 
         <div class="container mt-100 mt-60">

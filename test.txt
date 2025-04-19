@@ -1,0 +1,60 @@
+from FoxApp.models import Visiteur  # Remplacez 'votre_app' par le nom de votre application
+
+
+emails = [
+    "abadageorges8@gmail.com",
+    "animablanchard1@gmail.com",
+    "stephaneatabong45@gmail.com",
+    "badarodolphe845@gmail.com",
+    "nathanamvelabengono@icloud.com",
+    "raphaelbihay286@gmail.com",
+    "bouiyodajoseph@gmail.com",
+    "blondedanga@gmail.com",
+    "tresorleroyd@gmail.com",
+    "fredyfezeu@gmail.com",
+    "jonathabachelard@gmail.com",
+    "hasszouma@gmail.com",
+    "franklindavykamgacheuko@gmail.com",
+    "kengnefresnel@gmail.com",
+    "helciaskom@gmail.com",
+    "yobobryan@gmail.com",
+    "armelkoudjou64@gmail.com",
+    "belviane756@gmail.com",
+    "mbeuyobeufuaudreysandra@gmail.com",
+    "mbockjeandaniel2020@gmail.com",
+    "negoumarthuro@gmail.com",
+    "audainngeukeumeli@gmail.com",
+    "bernardroddier54@gmail.com",
+    "nguetchochloegabrielle@gmail.com",
+    "rickvarnel@gmail.com",
+    "noukouamaeva@gmail.com",
+    "obamaclement5@gmail.com",
+    "njetashey@gmail.com",
+    "emmanuelsibefeu453@gmail.com",
+    "charielle.simo@enspy-uy1.cm",
+    "hendrixpenka2@gmail.com",
+    "steveulrichfotseu@gmail.com",
+    "paveltieuguim@gmail.com",
+    "wandjilegentia@gmail.com",
+    "watchowilly@gmail.com",
+    "yohanngatcheu04@gmail.com",
+    "yimbouthedom@gmail.com",
+    "mir605175@gmail.com",
+    "henri.bikouri@enspy-uy1.cm",
+    "vanessadjoukouo4@gmail.com",
+    "veved.ngodaka@enspy-uy1.cm",
+    "temgouaguethe@gmail.com",  # Corrigé de "temgouaguethe@gmail,com"
+    "davidtolokoum8@gmail.com",
+    "wessimike@gmail.com"
+]
+
+# Ajouter chaque email
+for email in emails:
+    try:
+        visiteur, created = Visiteur.objects.get_or_create(email=email)
+        if created:
+            print(f"Ajouté: {email}")
+        else:
+            print(f"Existant: {email}")
+    except Exception as e:
+        print(f"Erreur pour {email}: {str(e)}")

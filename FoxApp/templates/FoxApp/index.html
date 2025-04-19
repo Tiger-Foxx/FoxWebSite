@@ -3,92 +3,139 @@
 {% block content %}
 {% load static %}
 
-    <!-- HOME START-->
-    <section class="bg-home d-table w-100" style="background-image: url('{% static 'images/home/bg2.jpg' %}')" id="home">
-        <div class="bg-overlay"></div>
-        <div class="container position-relative" style="z-index: 1">
-            <div class="row mt-5 mt-sm-0 justify-content-center">
-                <div class="col-lg-12 text-center">
-                    <div class="title-heading">
-                        <img src="{% static 'images/home/hero.jpg' %}" class="img-fluid rounded-circle" alt="" />
-                        <h3 class="heading text-light title-dark mt-3">
-                            Fox : 
-                            <span class="element text-primary"
-                                data-elements="Dev Mobile, Dev Web, Dev Software, Hacker Ethique"></span>
-                        </h3>
-                        <p class="para-desc mx-auto text-white-50">
-                            Service  expert en Développement, Hacking Ethique,
-                            et Ingénierie logicielle.
-                        </p>
-                        <div class="mt-4">
-                            <a href="javascript:alert('Pas encore disponible')" class="btn btn-primary rounded">Télécharger mon CV
-                                <i data-feather="download" class="fea icon-sm"></i></a>
-                        </div>
+<!-- HOME START-->
+<section class="_hero" id="home">
+    <div class="_hero_bg"></div>
+    <div class="_hero_overlay"></div>
+    
+    <div class="container position-relative _container">
+        <div class="_hero_grid">
+            <div class="_hero_content">
+                <span class="_badge">Services d'ingénierie informatique</span>
+                <h1 class="_hero_title">
+                    <span class="_hero_title_line">Hey! Bienvenue chez</span> 
+                    <span class="_hero_title_highlight">Fox<span class="_cursor">_</span></span>
+                </h1>
+                <p class="_hero_subtitle">
+                    Service expert en <span class="_highlight">Développement</span>, <span class="_highlight">Hacking Éthique</span>, 
+                    et <span class="_highlight">Ingénierie logicielle</span>.
+                </p>
+                <div class="_hero_buttons">
+                    <a href="javascript:alert('Pas encore disponible')" class="_btn _btn_primary">
+                        <span>Télécharger mon CV</span>
+                        <i class="_btn_icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 15L12 3M12 15L8 11M12 15L16 11M21 15V17C21 18.1046 20.1046 19 19 19H5C3.89543 19 3 18.1046 3 17V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg></i>
+                    </a>
+                    <a href="#services" class="_btn _btn_secondary _mouse-down">
+                        <span>Découvrir mes services</span>
+                        <i class="_btn_icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="_hero_visual">
+                <div class="_hero_image_wrapper">
+                    <div class="_hero_image_shine"></div>
+                    <img src="{% static 'images/logo-loader.png' %}" class="_hero_image" alt="Fox - Développeur & Hacker Éthique" />
+                </div>
+                <div class="_hero_floating_elements">
+                    <div class="_floating_element _element1">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 6V12L16 14M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="#58d5c2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="_floating_element _element2">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.9 2.1L9.2 3.8C8.9 4.1 8.9 4.7 9.2 5C9.5 5.3 10.1 5.3 10.4 5L12.1 3.3C12.4 3 12.4 2.4 12.1 2.1C11.8 1.8 11.2 1.8 10.9 2.1Z" fill="#58d5c2"/>
+                            <path d="M18.5 9.5L15.5 12.5C15.2 12.8 15.2 13.4 15.5 13.7C15.8 14 16.4 14 16.7 13.7L19.7 10.7C20 10.4 20 9.8 19.7 9.5C19.3 9.2 18.8 9.2 18.5 9.5Z" fill="#58d5c2"/>
+                            <path d="M7 9H4C3.4 9 3 9.4 3 10C3 10.6 3.4 11 4 11H7C7.6 11 8 10.6 8 10C8 9.4 7.6 9 7 9Z" fill="#58d5c2"/>
+                            <path d="M5.2 19.1L8.2 16.1C8.5 15.8 8.5 15.2 8.2 14.9C7.9 14.6 7.3 14.6 7 14.9L4 17.9C3.7 18.2 3.7 18.8 4 19.1C4.4 19.4 4.9 19.4 5.2 19.1Z" fill="#58d5c2"/>
+                            <path d="M21 13H18C17.4 13 17 13.4 17 14C17 14.6 17.4 15 18 15H21C21.6 15 22 14.6 22 14C22 13.4 21.6 13 21 13Z" fill="#58d5c2"/>
+                        </svg>
+                    </div>
+                    <div class="_floating_element _element3">&lt;/&gt;</div>
+                    <div class="_floating_element _element4">
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 15V17M12 7V13M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                     </div>
                 </div>
-                <!--end col-->
+                <div class="_typing_effect">
+                    <span class="_typing_prefix">Fox :</span>
+                    <span class="element text-primary" data-elements="Dev Mobile, Dev Web, Dev Software, Hacker Ethique"></span>
+                </div>
             </div>
-            <!--end row-->
         </div>
-        <!--end container-->
-        <a href="#about" data-scroll-nav="1" class="mouse-icon mouse-icon-white rounded-pill bg-transparent mouse-down">
-            <span class="wheel position-relative d-block mover"></span>
+    </div>
+    
+    <div class="_scroll_indicator">
+        <a href="#about" data-scroll-nav="1" class="_scroll_btn">
+            <span class="_scroll_text"></span>
+            <span class="_scroll_icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 5V19M12 19L19 12M12 19L5 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
         </a>
-    </section>
-    <!--end section-->
-    <!-- HOME END-->
+    </div>
+</section>
+<!--end section-->
+<!-- HOME END-->
 
-    <!-- About Start -->
-    <section class="section pb-3" id="about">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-5 col-md-5">
-                    <div class="about-hero">
-                        <img src="{{profile.photo.url}}" class="img-fluid mx-auto d-block about-tween position-relative"
-                            alt="" />
-                    </div>
+<!-- About Start -->
+<section class="section pb-3" id="about">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-5 col-md-5">
+                <div class="about-hero">
+                    <img src="{{profile.photo.url}}" class="img-fluid mx-auto d-block about-tween position-relative"
+                        alt="" />
                 </div>
-                <!--end col-->
-
-                <div class="col-lg-7 col-md-7 mt-4 pt-2 mt-sm-0 pt-sm-0">
-                    <div class="section-title mb-0 ml-lg-5 ml-md-3">
-                        <h4 class="title text-primary mb-3">{{profile.nom}}</h4>
-                        <h6 class="designation mb-3">
-                            <span > {{profile.sousTitre}} </span>
-                        </h6>
-                        <p class="text-muted">
-                            {{profile.descriptionP1}}
-                        </p>
-                        <blockquote class="blockquote mt-3 p-3">
-                            <p class="text-muted mb-0 font-italic">
-                                    {{profile.descriptionP2}}
-                                
-                            </p>
-                        </blockquote>
-                        
-                        
-
-                        <img src="{{profile.signature.url}}" height="22" alt="" />
-                        <div class="mt-4">
-                            
-                            <a href="#projects" class="btn btn-primary mouse-down">Voir le Portfolio</a>
-                        </div>
-                    </div>
-                </div>
-                <!--end col-->
             </div>
-            <!--end row-->
-        </div>
-        <!--end container-->
+            <!--end col-->
 
-        <div class="container mt-100 mt-60">
-            <div class="row justify-content-center">
-                <div class="col-12 text-center">
-                    <div class="section-title">
-                        <div class="titles">
-                            <h4 class="title title-line text-uppercase mb-4 pb-4">
-                                Nos Secteurs Familiers
-                            </h4>
+            <div class="col-lg-7 col-md-7 mt-4 pt-2 mt-sm-0 pt-sm-0">
+                <div class="section-title mb-0 ml-lg-5 ml-md-3">
+                    <h4 class="title text-primary mb-3">{{profile.nom}}</h4>
+                    <h6 class="designation mb-3">
+                        <span > {{profile.sousTitre}} </span>
+                    </h6>
+                    <p class="text-muted">
+                        {{profile.descriptionP1}}
+                    </p>
+                    <blockquote class="blockquote mt-3 p-3">
+                        <p class="text-muted mb-0 font-italic">
+                                {{profile.descriptionP2}}
+                            
+                        </p>
+                    </blockquote>
+                    
+                    
+
+                    <img src="{{profile.signature.url}}" height="22" alt="" />
+                    <div class="mt-4">
+                        
+                        <a href="#projects" class="btn btn-primary mouse-down">Voir le Portfolio</a>
+                    </div>
+                </div>
+            </div>
+            <!--end col-->
+        </div>
+        <!--end row-->
+    </div>
+    <!--end container-->
+
+    <div class="container mt-100 mt-60">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <div class="section-title">
+                    <div class="titles">
+                        <h4 class="title title-line text-uppercase mb-4 pb-4">
+                            Nos Secteurs Familiers
+                        </h4>
                             <span></span>
                         </div>
                         <p class="text-muted mx-auto para-desc mb-0">
@@ -1660,6 +1707,8 @@
     </section>
     <!--end section-->
     <!-- Contact End -->
+
+    <script src="{% static 'js/parallax-effect.js' %}"></script>
 
     {% endblock %}
 

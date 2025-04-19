@@ -866,7 +866,7 @@ button:not(:disabled) {
 }
 
 .nav-pills .nav-link {
-  color: #161c2d !important;
+  color: #fff !important;
   margin: auto 15px;
   border: 1px solid #e9ecef;
 }
@@ -1055,7 +1055,7 @@ button:not(:disabled) {
 }
 
 .social-icon.social li a {
-  color: #161c2d;
+  color: #e63131;
   border-color: #161c2d;
 }
 
@@ -1133,7 +1133,7 @@ body {
   font-family: "Roboto", sans-serif;
   overflow-x: hidden !important;
   font-size: 15px;
-  color: #161c2d;
+  /* color: #161c2d; */
 }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
@@ -1408,7 +1408,7 @@ p {
 }
 
 .navbar-custom .navbar-nav.navbar-nav-link .nav-item .nav-link {
-  color: #3c4858;
+  color: #fff !important;
 }
 
 .navbar-custom .navbar-nav.navbar-nav-link .nav-item .nav-link:hover, .navbar-custom .navbar-nav.navbar-nav-link .nav-item .nav-link:active {
@@ -1519,7 +1519,7 @@ p {
     padding: 10px 0px !important;
   }
   .navbar-custom .navbar-nav .nav-item .nav-link {
-    color: #161c2d !important;
+    color: #fff !important;
   }
   .navbar-custom .navbar-nav .nav-item .dropdown-toggle:after {
     float: right;
@@ -1541,7 +1541,7 @@ p {
     margin-top: 12px !important;
   }
   .navbar-custom .social-icon.light-social-icon li a {
-    color: #3c4858;
+    color: #fff !important;
     border-color: #3c4858;
   }
 }

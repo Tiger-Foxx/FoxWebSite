@@ -1,0 +1,17 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block content %}
+<div>
+    <h1>{{ title }}</h1>
+    <p>Téléchargez un fichier texte contenant une adresse email par ligne.</p>
+    
+    <form action="." method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="submit-row">
+            <input type="submit" class="default" value="Importer">
+        </div>
+    </form>
+</div>
+{% endblock %}

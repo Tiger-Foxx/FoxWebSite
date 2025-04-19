@@ -18,8 +18,8 @@ from django.core.exceptions import ValidationError
 
 def index(request):
     template='FoxApp/index.html'
-    projets= Project.objects.all()[:15]
-    posts=Post.objects.all()[:3]
+    projets= Project.objects.all().order_by('-date')[:17]
+    posts=Post.objects.all().order_by('-date')[:3]
     profile=Profile.objects.all()[0]
     
     return render(request,template_name=template,context={
@@ -64,7 +64,7 @@ def blog(request):
     
 def portfolio(request):
     template='FoxApp/page-portfolio.html'
-    projets=Project.objects.all()
+    projets=Project.objects.all().order_by('-date')
     posts=Post.objects.all()[:3]
     profile=Profile.objects.all()[0]
 
