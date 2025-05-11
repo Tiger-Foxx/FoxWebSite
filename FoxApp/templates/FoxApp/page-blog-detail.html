@@ -7,6 +7,7 @@
 <meta name="description" content="{{ post.description|striptags|truncatechars:360 }}" />
 <meta name="keywords" content="{{ post.categorie }}, Fox, blog, {{ post.titre|lower }}" />
 <meta name="author" content="The Fox" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 {# Open Graph Meta Tags pour le partage social #}
 <meta property="og:title" content="Fox : {{ post.titre }}" />
@@ -51,6 +52,49 @@
   }
 }
 </script>
+
+
+<style>
+/* Styles pour optimiser l'affichage mobile */
+@media (max-width: 767px) {
+  .blog-content-column {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+  }
+  
+  .blog .content {
+    padding: 15px !important;
+  }
+  
+  .markdown-content {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+  
+  /* S'assurer que les images, tableaux et autres éléments ne dépassent pas */
+  .markdown-content img, 
+  .markdown-content table, 
+  .markdown-content iframe, 
+  .markdown-content pre {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  
+  /* Ajuster le padding des conteneurs */
+  .container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  /* Ajuster la largeur de la colonne du blog sur mobile */
+  .col-lg-7.col-md-8 {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+</style>
 {% endblock %}
 
 {% block content %}
@@ -86,9 +130,10 @@
 <!-- Blog Content Start -->
 <section class="section">
     <div class="container">
+        <!-- Grille adaptative pour mobile -->
         <div class="row">
-            <!-- Images Column -->
-            <div class="col-lg-5 col-md-4">
+            <!-- Images Column - Masquer sur mobile -->
+            <div class="col-lg-5 col-md-4 d-none d-md-block">
                 <div class="sticky-sidebar">
                     <img src="{{ post.photo500_x_800.url }}" class="img-fluid rounded shadow-lg" alt="{{ post.titre }}">
                     {% if post.photo800_x_533 %}
@@ -97,8 +142,13 @@
                 </div>
             </div>
 
-            <!-- Content Column -->
-            <div class="col-lg-7 col-md-8 mt-4 mt-sm-0 pt-2 pt-sm-0">
+            <!-- Image principale visible uniquement sur mobile -->
+            <div class="col-12 d-md-none mb-3">
+                <img src="{{ post.photo500_x_800.url }}" class="img-fluid rounded shadow-lg w-100" alt="{{ post.titre }}">
+            </div>
+
+            <!-- Content Column - Pleine largeur sur mobile -->
+            <div class="col-lg-7 col-md-8 col-12 blog-content-column mt-4 mt-sm-0 pt-2 pt-sm-0">
                 <article class="blog position-relative overflow-hidden shadow rounded">
                     <div class="content">
                         <div class="markdown-content">
@@ -120,8 +170,8 @@
 
                         <!-- Social Share -->
                         <div class="post-meta border-top pt-3 mt-3">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="post-interactions">
+                            <div class="d-flex flex-wrap justify-content-between align-items-center">
+                                <div class="post-interactions mb-2 mb-sm-0">
                                     <button class="btn btn-link text-muted like-btn" data-post-id="{{ post.id }}">
                                         <i class="mdi mdi-heart-outline mr-1"></i><span class="like-count">33</span>
                                     </button>
@@ -148,7 +198,7 @@
                         <ul class="media-list list-unstyled mb-0">
                             {% for commentaire in commentaires %}
                             <li class="media mt-4">
-                                <a class="float-left pr-3 mt-2" href="#">
+                                <a class="float-left pr-3 mt-2 d-none d-sm-block" href="#">
                                     <img class="img-fluid d-block mx-auto img-thumbnail rounded-circle" src="{% static 'images/client/c.png' %}" alt="img">
                                 </a>
 
@@ -177,13 +227,13 @@
                                     </div>
                                 </div><!--end col-->
 
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <input id="name" name="nom" type="text" placeholder="Name" class="form-control border rounded" required="">
                                     </div>
                                 </div><!--end col-->
 
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <input id="email" type="email" placeholder="Email" name="email" class="form-control border rounded" required="">
                                     </div>
@@ -197,10 +247,7 @@
                             </div><!--end row-->
                         </form><!--end form-->
                     </div>
-
                 </div>
-
-
             </div>
         </div>
     </div>
@@ -241,7 +288,60 @@
     <script>
         // Attendez que le DOM soit chargé
 document.addEventListener('DOMContentLoaded', function() {
-
+    // Assurer que le contenu du blog prend toute la largeur disponible sur mobile
+    function adjustContentWidth() {
+        // Récupérer la largeur de l'écran
+        const screenWidth = window.innerWidth;
+        
+        // Récupérer l'élément contenant le contenu du blog
+        const markdownContent = document.querySelectorAll('.markdown-content');
+        
+        if (screenWidth < 768) { // Pour les écrans mobiles
+            markdownContent.forEach(content => {
+                // S'assurer que le contenu prend toute la largeur disponible
+                content.style.width = '100%';
+                
+                // S'assurer que toutes les images et les tableaux dans le contenu sont responsives
+                const images = content.querySelectorAll('img');
+                images.forEach(img => {
+                    img.style.maxWidth = '100%';
+                    img.style.height = 'auto';
+                });
+                
+                const tables = content.querySelectorAll('table');
+                tables.forEach(table => {
+                    table.style.maxWidth = '100%';
+                    table.style.display = 'block';
+                    table.style.overflowX = 'auto';
+                });
+                
+                // Ajuster les iframes (vidéos YouTube, etc.)
+                const iframes = content.querySelectorAll('iframe');
+                iframes.forEach(iframe => {
+                    iframe.style.maxWidth = '100%';
+                });
+                
+                // Ajuster les blocs de code
+                const preTags = content.querySelectorAll('pre');
+                preTags.forEach(pre => {
+                    pre.style.maxWidth = '100%';
+                    pre.style.overflowX = 'auto';
+                });
+                
+                // Ajuster les div internes
+                const divs = content.querySelectorAll('div');
+                divs.forEach(div => {
+                    div.style.maxWidth = '100%';
+                });
+            });
+        }
+    }
+    
+    // Exécuter la fonction au chargement
+    adjustContentWidth();
+    
+    // Et à chaque redimensionnement de l'écran
+    window.addEventListener('resize', adjustContentWidth);
 
     // Gestion du partage social
     const shareButtons = document.querySelectorAll('.share-btn');
@@ -346,7 +446,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Style CSS pour les notifications
+// Style CSS pour les notifications et les ajustements mobiles
 const style = document.createElement('style');
 style.textContent = `
     .notification {
@@ -380,6 +480,28 @@ style.textContent = `
     .sticky-sidebar.is-sticky {
         position: sticky;
         top: 20px;
+    }
+    
+    /* Styles responsifs pour le contenu du blog sur mobile */
+    @media (max-width: 767px) {
+        .markdown-content {
+            width: 100% !important;
+            padding: 0 !important;
+        }
+        
+        .markdown-content * {
+            max-width: 100% !important;
+            word-wrap: break-word !important;
+        }
+        
+        .blog .content {
+            padding: 15px !important;
+        }
+        
+        .container {
+            padding-left: 10px !important;
+            padding-right: 10px !important;
+        }
     }
 `;
 document.head.appendChild(style);

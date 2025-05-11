@@ -33,7 +33,7 @@ def index(request):
 def post(request,id):
     template='FoxApp/page-blog-detail.html'
     post=get_object_or_404(Post,id=id)
-    posts=Post.objects.all()[:3]
+    posts=Post.objects.all().order_by('-date')[:3]
     profile=Profile.objects.all()[0]
     commentaires=Commentaire.objects.filter(post=post)
 
@@ -51,7 +51,7 @@ def blog(request):
     paginator=Paginator(posts,6)
     page=request.GET.get('page')
     posts_page=paginator.get_page(page)
-    recents=Post.objects.all()[:3]
+    recents=Post.objects.all().order_by('-date')[:3]
     profile=Profile.objects.all()[0]
 
 
@@ -65,7 +65,7 @@ def blog(request):
 def portfolio(request):
     template='FoxApp/page-portfolio.html'
     projets=Project.objects.all().order_by('-date')
-    posts=Post.objects.all()[:3]
+    posts=Post.objects.all().order_by('-date')[:3]
     profile=Profile.objects.all()[0]
 
     return render(request,template_name=template,context={
@@ -77,7 +77,7 @@ def portfolio(request):
 def projet(request,id):
     template='FoxApp/page-portfolio-detail.html'
     projet=get_object_or_404(Project,id=id)
-    posts=Post.objects.all()[:3]
+    posts=Post.objects.all().order_by('-date')[:3]
     profile=Profile.objects.all()[0]
     return render(request,template_name=template,context={
         'projet': projet,
